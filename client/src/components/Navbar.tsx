@@ -36,12 +36,12 @@ const Navbar = () => {
           )}
           {session ? (
             <>
-              <div className='nav__menu' onClick={()=>{setDisplayMenu(!displayMenu)}}>
-                <Bars2Icon className='icon-small' />
-              </div>
               <Link to='/upload'>Upload Work</Link>
               Userphoto
               <Link to='/sign-up'>Sign Up</Link>
+              <div className='nav__menu' onClick={()=>{setDisplayMenu(!displayMenu)}}>
+                <Bars2Icon className='icon-small' />
+              </div>
             </>
           ) : (
             <>AuthProviders</>

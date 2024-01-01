@@ -219,6 +219,23 @@ p{
         font-weight: 700;
         color: var(--black);
     }
+    &__buttons{
+        position: absolute;
+        left: 16px;
+        bottom: 16px;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+    }
+    &__button{
+        width: 32px;
+        height: 32px;
+        background-color: var(--white-80);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+    }
 }
 .hero{
     height: 400px;
@@ -390,8 +407,8 @@ p{
 
 .menu{
     position: absolute;
-    top: 64px;
-    right: 120px;
+    top: 56px;
+    right: 80px;
     width: 240px;
     background-color: var(--white);
     border-radius: 8px;
@@ -495,5 +512,24 @@ p{
         flex-direction: column;
         gap: 16px;
         width: 100%;
+    }
+}
+
+.modal{
+    position: relative;
+    width: 880px;
+    top: 120px;
+    background-color: var(--white);
+    padding: 32px;
+    z-index: 10000;
+    border: 1px solid var(--gray-200);
+    border-radius: 24px;
+}
+
+.project-det{
+    &__img{
+        background-color: var(--gray-100);
+        width: 600px;
+        aspect-ratio: auto 4/3;
     }
 }

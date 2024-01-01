@@ -1,8 +1,9 @@
 import arrow from '../../assets/pixel-arrow.svg'
-import ProjectCard from './ProjectCard'
+import ProjectCard from '../../components/ProjectCard'
 import Categories from './Categories'
 import { useEffect, useState } from 'react';
 import axios from "axios";
+import ProjectDetails from '../../components/ProjectDetails';
 
 interface Post extends Document {
   title: string;
@@ -35,6 +36,7 @@ const Home = () => {
   }, [])
   return (
     <main>
+      {/* <ProjectDetails /> */}
       <section className='hero'>
         <div className='hero__text'>
           <h1 className='hero__heading'>Discover and showcase coding projects</h1>
@@ -62,6 +64,8 @@ const Home = () => {
               name='' 
               avatarUrl='' 
               userId=''
+              likes={project.likeCount}
+              views={project.viewCount}
             />
           )
         })}
