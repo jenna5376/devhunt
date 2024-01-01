@@ -1,43 +1,33 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from "cors";
+import passport from 'passport';
 import './config/config';
 import './passport';
-
-const passport = require('passport');
-const cookieSession = require('cookie-session')
+const cookieSession = require("cookie-session");
 
 import path from 'path';
 import postRoutes from './routes/posts';
 import authRoutes from './routes/auth';
-import session from 'express-session';
 
 const app = express();
-
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// app.use(cookieSession(
-//     {
-//         name: 'session',
-//         keys: ['devhunt'],
-//         maxAge: 24 * 60 * 60 * 100 * 30
-//     }
-// ));
-
-app.use(session({
-    secret: 'your_secret_key',
-    resave: false,
-    saveUninitialized: false
-}));
-
-app.use(passport.initialize())
+app.use(
+	cookieSession({
+		name: "session",
+		keys: ["devhunt"],
+		maxAge: 30 * 24 * 60 * 60 * 100,
+	})
+);
+app.use(passport.initialize());
 app.use(passport.session())
-
 app.use(cors({
     origin: "http://localhost:3000",
-    credentials: true
+    credentials: true,
+    methods: "GET,POST,PUT,DELETE",
 }))
 
 app.use('/posts', postRoutes);

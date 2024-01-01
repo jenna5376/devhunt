@@ -11,22 +11,22 @@ import axios from 'axios'
 const App: React.FC = () => {
   const [user, setUser] = useState(null);
 
-  useEffect(()=>{
-    const getUser = async () => {
-      try {
-        const response = await axios.get("http://localhost:4000/auth/signin/success");
-        console.log(response.data)
-        setUser(response.data.user)
-      } catch (err) {
-        console.log(err);
+ useEffect(() => {
+    axios(
+      {
+        method: "GET",
+        url: "http://localhost:4000/auth/signin/success",
+        withCredentials:true,
       }
-    }
-    getUser()
+    ).then(res => {
+      console.log(res)
+      setUser(res.data.user)
+    })
   }, [])
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="/upload" element={<Upload/>}></Route>

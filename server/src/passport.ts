@@ -9,17 +9,26 @@ const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GithubStrategy = require("passport-github2").Strategy;
 
-
 passport.use(new GoogleStrategy(
     {
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
         callbackURL: "/auth/google/callback"
     },
-    function(accessToken: any, refreshToken: any, profile: any, cb:any, done:any) {
-        // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        // return cb(err, user);
-        // });
+
+    function(req: Request, accessToken: any, refreshToken: any, profile: any, done: any) {
+        // const id = profile.id;
+        // const email = profile.emails[0].value;
+        // const firstName = profile.name.givenName;
+        // const lastName = profile.name.familyName;
+        // const profilePhoto = profile.photos[0].value;
+        // const newUser = {
+        //     id,
+        //     email,
+        //     firstName,
+        //     lastName,
+        //     profilePhoto
+        // }
         done(null, profile)
 
         /**
@@ -34,20 +43,30 @@ passport.use(new GoogleStrategy(
 
 passport.use(
     new GithubStrategy(
-      {
-        clientID: GITHUB_CLIENT_ID,
-        clientSecret: GITHUB_CLIENT_SECRET,
-        callbackURL: "/auth/github/callback",
-      },
-      function (accessToken: any, refreshToken: any, profile: any, cb:any, done:any) {
-        done(null, profile);
-      }
+        {
+            clientID: GITHUB_CLIENT_ID,
+            clientSecret: GITHUB_CLIENT_SECRET,
+            callbackURL: "/auth/github/callback",
+        },
+        function (req: Request, accessToken: any, refreshToken: any, profile: any, done: any) {
+            const id = profile.id;
+            const name = profile.displayName;
+            const profilePhoto = profile.photos[0].value;
+            const newUser = {
+                id,
+                name,
+                profilePhoto
+            }
+            console.log(newUser)
+            done(null, profile);
+        }
     )
-  );
+);
 
 passport.serializeUser((user, done: Function) => {
     done(null, user);
 });
+
 passport.deserializeUser((user, done: Function)=>{
     done(null, user)
 })

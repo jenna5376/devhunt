@@ -5,10 +5,16 @@ import { useState } from 'react';
 import { Bars2Icon } from '@heroicons/react/24/outline';
 import Menu from './Menu';
 
-const Navbar = () => {
-  const session = {};
-  const [displayMenu, setDisplayMenu] = useState(false)
+interface Props{
+  user: any
+}
 
+const Navbar = ({user}: Props) => {
+  const [displayMenu, setDisplayMenu] = useState(false)
+  console.log(user)
+  const logout = () => {
+    window.open("http://localhost:4000/auth/signout", "_self");
+  };
   return (
     <header className='nav'>
       <div className='nav__left'>
@@ -34,17 +40,19 @@ const Navbar = () => {
           ):(
             ''
           )}
-          {session ? (
+          {user ? (
             <>
               <Link to='/upload'>Upload Work</Link>
               Userphoto
-              <Link to='/sign-up'>Sign Up</Link>
               <div className='nav__menu' onClick={()=>{setDisplayMenu(!displayMenu)}}>
                 <Bars2Icon className='icon-small' />
               </div>
+              <li className="listItem" onClick={logout}>
+                Logout
+              </li>
             </>
           ) : (
-            <>AuthProviders</>
+            <Link to='/sign-up'>Sign Up</Link>
           )}
         </div>
       </nav>

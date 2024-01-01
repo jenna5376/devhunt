@@ -5,7 +5,6 @@ import express, { Router } from 'express';
 const CLIENT_URL = 'http://localhost:3000/'
 const router: Router = express.Router();
 
-//fix cookies
 router.get('/signin/success', (req: Request, res: Response) => {
     if (req.user) {
         res.status(200).json({
@@ -15,11 +14,13 @@ router.get('/signin/success', (req: Request, res: Response) => {
             cookies: req.cookies
         })
     }
-    res.send('fail')
 })
 
-router.get('/signout', (req: Request, res: Response)=>{
-    // req.logout(); 
+router.get('/signout', (req: Request, res: Response, next)=>{
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        res.redirect('/');
+    });
     res.redirect(CLIENT_URL);
 })
 
@@ -30,16 +31,19 @@ router.get('/signin/failed', (req: Request, res: Response) => {
     })
 })
 
-router.get('/google', passport.authenticate('google', {scope: ['profile']}));
+router.get("/google", passport.authenticate("google", { 
+    scope: ['profile', 'email'],
+    session: true
+}));
 
 router.get('/google/callback', 
     passport.authenticate('google', {
         successRedirect: CLIENT_URL,
-        failureRedirect: '/signin/failed'
+        failureRedirect: '/signin/failed',
+        session: true
     })
 )
 
-////////////
 router.get('/github', passport.authenticate('github', {scope: ['profile']}));
 
 router.get('/github/callback', 
