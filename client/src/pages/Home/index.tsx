@@ -26,7 +26,6 @@ const Home = () => {
       try {
         const response = await axios.get("http://localhost:4000/posts");
         setProjects(response.data);
-        console.log(response.data)
       } catch (err) {
         console.log(err);
       }
@@ -55,7 +54,6 @@ const Home = () => {
       </section>
       <section className='projects'>
         {projects.map((project) => {
-          console.log(project)
           return (
             <ProjectCard 
               id=""

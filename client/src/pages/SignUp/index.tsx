@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import gradient from '../../assets/gradient.png'
 import dIcon from '../../assets/devfolio-icon-black.svg'
 import Button from '../../components/Button'
@@ -8,7 +8,13 @@ import github from '../../assets/github.svg'
 
 const SignUp = () => {
 
-    const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('');
+  function googleAuth(){
+    window.open('http://localhost:4000/auth/google', '_self')
+  }
+  function githubAuth(){
+    window.open('http://localhost:4000/auth/github', '_self')
+  }
 
   return (
     <div className='signup'>
@@ -25,11 +31,13 @@ const SignUp = () => {
                   color='secondary'
                   icon={google}
                   text='Sign up with Google'
+                  onclick={googleAuth}
               />
               <Button
                   color='secondary'
                   icon={github}
                   text='Sign up with GitHub'
+                  onclick={githubAuth}
               />
               <p className='signup__or'>or</p>
             </div>

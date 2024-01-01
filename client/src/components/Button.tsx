@@ -2,12 +2,16 @@ interface Props {
   size?: string,
   color?: string,
   icon?: string,
-  text: string
+  text: string, 
+  onclick?: () => void;
 }
 
-const Button = ({size, color, icon, text} : Props) => {
+const Button = ({size, color, icon, text, onclick} : Props) => {
   return (
-    <button className={`button button--${size} button--${color}`}>
+    <button 
+      className={`button button--${size} button--${color}`}
+      onClick={onclick}
+    >
       <img src={icon} />
       {text}
     </button>

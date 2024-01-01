@@ -143,6 +143,7 @@ p{
     border-top: 1px solid var(--gray-100);
     padding: 40px 80px 80px 80px;
     &__left{
+        @include body-regular;
         color: var(--gray-500);
         flex-grow: 1;
     }
@@ -153,6 +154,7 @@ p{
         margin-right: 4px;
     }
     &__right{
+        @include body-regular;
         color: var(--gray-500);
     }
     &__count{
