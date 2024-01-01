@@ -1,6 +1,6 @@
 interface Props {
     type?: string;
-    title: string;
+    title?: string;
     state: string;
     placeholder: string;
     setState: (value: string) => void;

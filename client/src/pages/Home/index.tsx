@@ -3,7 +3,6 @@ import ProjectCard from './ProjectCard'
 import Categories from './Categories'
 import { useEffect, useState } from 'react';
 import axios from "axios";
-import Menu from '../../components/Menu';
 
 interface Post extends Document {
   title: string;
@@ -36,7 +35,6 @@ const Home = () => {
   }, [])
   return (
     <main>
-      <Menu />
       <section className='hero'>
         <div className='hero__text'>
           <h1 className='hero__heading'>Discover and showcase coding projects</h1>
