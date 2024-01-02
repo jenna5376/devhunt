@@ -34,7 +34,8 @@ router.get('/signin/failed', (req: Request, res: Response) => {
 router.get("/google", passport.authenticate("google", { 
     scope: ['profile', 'email'],
     session: true
-}));
+    }
+));
 
 router.get('/google/callback', 
     passport.authenticate('google', {
@@ -44,7 +45,9 @@ router.get('/google/callback',
     })
 )
 
-router.get('/github', passport.authenticate('github', {scope: ['profile']}));
+router.get('/github', passport.authenticate('github', 
+    {scope: ['profile', 'user:email']}
+));
 
 router.get('/github/callback', 
     passport.authenticate('github', {

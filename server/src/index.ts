@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import cors from "cors";
 import passport from 'passport';
 import './config/config';
-import './passport';
+import './config/passport';
 const cookieSession = require("cookie-session");
 
 import path from 'path';
