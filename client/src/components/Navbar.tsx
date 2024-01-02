@@ -1,9 +1,10 @@
 import logoBlack from '../assets/logo-black.svg'
 import { Link } from 'react-router-dom'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-import { Bars2Icon } from '@heroicons/react/24/outline';
+import { Bars2Icon, MagnifyingGlassIcon, PlusIcon, MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import Menu from './Menu';
+import Button from './Button';
+import IconButton from './IconButton';
 
 interface Props{
   user: any
@@ -43,13 +44,14 @@ const Navbar = ({user}: Props) => {
           {user ? (
             <>
               <Link to='/upload'>Upload Work</Link>
-              Userphoto
+              <img className='icon-small' />
               <div className='nav__menu' onClick={()=>{setDisplayMenu(!displayMenu)}}>
                 <Bars2Icon className='icon-small' />
               </div>
               <li className="listItem" onClick={logout}>
                 Logout
               </li>
+            
             </>
           ) : (
             <Link to='/sign-up'>Sign Up</Link>

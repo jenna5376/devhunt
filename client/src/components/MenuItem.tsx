@@ -1,10 +1,12 @@
 interface Props {
     title: string,
     link: string,
-    iconLeft?: string,
+    iconLeft?: any,
     iconRight?: boolean,
     external: boolean
 }
+
+import { ArrowUpRightIcon } from '@heroicons/react/20/solid'
 
 interface ConditionalWrapperProps {
     condition: boolean;
@@ -18,23 +20,24 @@ import { Link } from "react-router-dom";
 const MenuItem = ({title, link, iconLeft, iconRight, external}: Props) => {
     const ConditionalWrapper = ({ condition, wrapper1, wrapper2, children }: ConditionalWrapperProps) =>
     condition ? wrapper1(children) : wrapper2(children);
-    
+
+
+    console.log(iconLeft)
     return (
-        <div className="menu-item">
+        <>
             <ConditionalWrapper 
                 condition={external}
                 wrapper1={children => 
-                    <a target='_blank' rel="noopener" href={link}>{children}</a>
+                    <a className="menu-item" target='_blank' rel="noopener" href={link}>{children}</a>
                 }
                 wrapper2={children => 
-                    <Link to={link}>{children}</Link>
+                    <Link className='menu-item' to={link}>{children}</Link>
                 }
             >
-                {iconLeft?<img className="menu-item__icon" src={iconLeft} /> : ""}
                 <p className="menu-item__title">{title}</p>
-                {iconRight?<img className="menu-item__icon" /> : ""}
+                {iconRight && <ArrowUpRightIcon className='icon-small' />}
             </ConditionalWrapper>
-        </div>
+        </>
     )
 }
 

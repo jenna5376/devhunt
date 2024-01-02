@@ -7,6 +7,7 @@ import Upload from './pages/Upload'
 import SignUp from './pages/SignUp'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Profile from './pages/Profile/index'
 
 const App: React.FC = () => {
   const [user, setUser] = useState(null);
@@ -31,6 +32,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Home/>}></Route>
         <Route path="/upload" element={<Upload/>}></Route>
         <Route path="/sign-up" element={<SignUp/>}></Route>
+        <Route path="/profile" element={<Profile/>}></Route>
       </Routes>
       <Footer />
     </>

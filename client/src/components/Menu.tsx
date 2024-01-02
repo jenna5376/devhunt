@@ -10,13 +10,13 @@ const Menu = () => {
         </div>
         <div className="menu__internal">
             {menuItems.slice(0,3).map(link => {
+                console.log(link.iconLeft)
                 return (
                     <MenuItem 
                         title={link.title}
                         link={link.link}
                         external={link.external}
-                        // iconLeft={link.iconLeft}
-                        // iconRight={link.iconRight}
+                        iconLeft={link.iconLeft}
                     />
                 )
             })}
@@ -28,8 +28,7 @@ const Menu = () => {
                         title={link.title}
                         link={link.link}
                         external={link.external}
-                        // iconLeft={link.iconLeft}
-                        // iconRight={link.iconRight}
+                        iconRight={link.iconRight}
                     />
                 )
             })}

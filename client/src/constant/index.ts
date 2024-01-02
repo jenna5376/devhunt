@@ -2,32 +2,34 @@ import { InboxIcon, HeartIcon, Cog6ToothIcon } from "@heroicons/react/24/outline
 
 export const menuItems = [
     {
-      title: "My portfolio",
-      link: "/",
+      title: "Your profile",
+      link: "/profile",
       iconLeft: InboxIcon,
       external: false
     },
     {
       title: "Liked projects",
-      link: "/",
+      link: "/profile",
       iconLeft: HeartIcon,
       external: false
     },
     {
       title: "Settings",
-      link: "/",
+      link: "/settings",
       iconLeft: Cog6ToothIcon,
       external: false
     },
     {
       title: "Feedback",
       link: "/",
-      external: true
+      external: true,
+      iconRight: true
     },
     {
       title: "Support",
       link: "/",
-      external: true
+      external: true,
+      iconRight: true
     },
     {
       title: "Sign Out",

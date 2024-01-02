@@ -18,10 +18,10 @@
     --black: #111111;
     --blue: #3692E3;
     --gray-100: #F4F4F6;
-    --gray-200: #E3E4E8;
+    --gray-200: #E9EAEF;
     --gray-300: #C1C2CA;
     --gray-400: #96979B;
-    --gray-500: #606165;
+    --gray-500: #68696F;
     --Green: #50C099;
     --red-dark: #BD3434;
     --red-light: #FFF2F4;
@@ -39,6 +39,7 @@
 
 a{
     text-decoration: none;
+    color: var(--black);
 }
 
 body{
@@ -50,8 +51,8 @@ p{
 }
 
 .nav{
-    position: fixed;
-    z-index: 1000;
+    // position: fixed;
+    // z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -179,6 +180,9 @@ p{
         .project-card__img{
             transform: translateY(-8px);
         }
+        .project-card__buttons{
+            opacity: 100;
+        }
     }
     &__img{
         transition: all 0.24s ease-in-out;
@@ -225,9 +229,11 @@ p{
         position: absolute;
         left: 16px;
         bottom: 16px;
-        display: flex;
         flex-direction: row;
         gap: 8px;
+        transition: all 0.12s ease-in-out;
+        opacity: 0;
+        display: flex;
     }
     &__button{
         width: 32px;
@@ -240,9 +246,8 @@ p{
     }
 }
 .hero{
-    height: 400px;
+    height: 340px;
     border-bottom: 1px solid var(--gray-100);
-    padding-top: 64px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -355,6 +360,17 @@ p{
         &::placeholder{
             color: var(--gray-300);
         }
+        &:hover{
+            background-color: var(--gray-200);
+        }
+        &:focus{
+            padding: 10px 14px;
+            border: 2px solid var(--gray-400);
+            outline: none;
+        }
+        &:valid{
+            color: var(--black)
+        }
     }
 }
 
@@ -443,13 +459,20 @@ p{
     padding: 8px;
     background-color: var(--white);
     border-radius: 8px;
+    display: flex;
+    flex-direction: row;
     &:hover{
         background-color: var(--gray-100);
+    }
+    &__title{
+        @include body-regular;
+        font-weight: 500;
+        color: var(--gray-500);
+        flex-grow: 1;
     }
 }
 .signup{
     margin-top: 80px;
-    height: 100vh;
     &__icon{
         width: 40px;
         height: 40px;
