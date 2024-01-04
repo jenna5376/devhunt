@@ -15,7 +15,7 @@ interface Post extends Document {
 
 interface Props {
     projects: Array<Post>;
-    user: any;
+    user?: any;
 }
 
 const Projects = ({projects, user}: Props) => {
@@ -24,12 +24,12 @@ const Projects = ({projects, user}: Props) => {
         {projects.map((project) => {
         return (
             <ProjectCard 
-                postId={project._id}
+                postId={project._id || ""}
                 image="" 
                 title={project.title}
                 name="" 
                 avatarUrl="" 
-                userId={user._id}
+                user={user || ''}
                 likes={project.likeCount}
                 views={project.viewCount}
             />

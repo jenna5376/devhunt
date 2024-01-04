@@ -9,15 +9,17 @@ interface Props {
     title: string;
     name: string;
     avatarUrl: string;
-    userId: any;
+    user?: any;
     likes: number;
     views: number;
 };
 
-const ProjectCard = ({ postId, image, title, name, avatarUrl, userId, likes, views }: Props) => {
+const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views }: Props) => {
     function incrementHeart(evt: React.SyntheticEvent){
         evt.preventDefault();
         evt.stopPropagation();
+
+        if (user){
 
         const likeProject = async (postId: string, userId: string) => {
             try {
@@ -29,9 +31,11 @@ const ProjectCard = ({ postId, image, title, name, avatarUrl, userId, likes, vie
             } catch (err) {
                 console.log(err);
             }
-        };
-        likeProject(postId, userId)
+            };
+            likeProject(postId, user._id)
+        }
     }
+
     return (
         <div key={postId}>
             <Link to={`/project/${postId}`}>

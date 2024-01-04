@@ -84,7 +84,7 @@ const Profile = ({user, setUser}: Props) => {
 						className={`chip ${selected==='liked' ? 'chip--selected' : ''}`}
 						onClick={() => setCategory('liked')}
 					>
-						Liked Projects<span className="profile__count">{projects.length}</span>
+						Liked Projects<span className="profile__count">{liked.length}</span>
 					</button>
 				</ul>
 				<Projects 
