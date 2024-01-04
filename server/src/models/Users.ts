@@ -1,21 +1,25 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
+//todo fix posts type
 interface IUser extends Document {
     name: string;
     email: string;
-    // password: string;
     avatar: string;
     googleId: number;
     githubId: number;
+    posts: Array<mongoose.Schema.Types.ObjectId>;
+    likedPosts: any;
     followers: Array<string>;
     following: Array<string>;
     about: string,
     publicEmail: string,
     github: number,
-    website: number
+    website: number,
 }
 
-const UserSchema: Schema = new mongoose.Schema({
+//todo update followers following
+
+const UserSchema: Schema = new mongoose.Schema<IUser>({
     name: { 
         type: String, 
         required: true
@@ -24,9 +28,6 @@ const UserSchema: Schema = new mongoose.Schema({
         type: String,
         required:true
     },
-    // password: { 
-    //     type: String
-    // },
     avatar: {
         type: String,
         default: "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg"
@@ -36,6 +37,14 @@ const UserSchema: Schema = new mongoose.Schema({
     },
     githubId: {
         type: Number
+    },
+    posts: {
+        type: [mongoose.Schema.Types.ObjectId], 
+        ref: "Recipe"
+    },
+    likedPosts: {
+        type: [mongoose.Schema.Types.ObjectId], 
+        ref: "Recipe"
     },
     followers: {
         type: [Array],
