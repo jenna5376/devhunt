@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 @import './mixins';
 
+//bold mix in
 
 :root{
     --heading-1: 3rem;
@@ -63,6 +64,9 @@ p{
     left: 0;
     box-sizing: border-box;
     width: 100%;
+    ul{
+        list-style: none;
+    }
     &__left{
         display: flex;
         align-items: center;
@@ -102,41 +106,61 @@ p{
         border: 1px solid var(--gray-200);
         background-color: var(--white);
         cursor: pointer;
+        &--auth{
+            width: auto;
+            height: auto;
+            padding: 4px 8px 4px 4px;
+            border-radius: 32px;
+            gap: 4px;
+        }
+    }
+    &__avatar{
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+    }
+    &__links{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
     }
 }
 
 .filter{
     margin: 32px 0;
     @include margin-small;
-    .categories{
-        flex-direction: row;
-        overflow-x: auto;
-        overflow-y: hidden;
-        height: 36px;
-        scroll-behavior: smooth;
-        .chip{
-            @include body-regular;
-            padding: 8px 12px;
-            border-radius: 32px;
-            background-color: transparent;
-            color: var(--gray-500);
-            border: none;
-            font-weight: 500;
-            margin-right: 8px;
+    
+}
+
+.categories{
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 36px;
+    scroll-behavior: smooth;
+    .chip{
+        @include body-regular;
+        padding: 8px 12px;
+        border-radius: 32px;
+        background-color: transparent;
+        color: var(--gray-500);
+        border: none;
+        font-weight: 500;
+        margin-right: 8px;
+        &:hover{
+            color: var(--gray-400);
+            cursor: pointer;
+        }
+        &--selected{
+            background-color: var(--black-04);
+            color: var(--black);
             &:hover{
-                color: var(--gray-400);
-                cursor: pointer;
-            }
-            &--selected{
-                background-color: var(--black-04);
-                color: var(--black);
-                &:hover{
-                    color: var(--gray-500);
-                }
+                color: var(--gray-500);
             }
         }
     }
-    
 }
 
 .footer{
@@ -357,6 +381,7 @@ p{
         border: none;
         width: 100%;
         box-sizing: border-box;
+        font-family: 'Rubik', sans-serif;
         &::placeholder{
             color: var(--gray-300);
         }
@@ -404,12 +429,12 @@ p{
 }
 
 .button{
-    @include body-large;
+    @include body-regular;
+    padding: 8px 12px;
     cursor: pointer;
     font-weight: 500;
     background-color: var(--black);
     color: var(--gray-100);
-    padding: 10px 16px;
     border-radius: 12px;
     border: none;
     display: flex;
@@ -420,6 +445,10 @@ p{
     &--secondary{
         background-color: var(--gray-100);
         color: var(--black);
+    }
+    &--large{
+        @include body-large;
+        padding: 10px 16px;
     }
 }
 
@@ -462,6 +491,7 @@ p{
     display: flex;
     flex-direction: row;
     &:hover{
+        cursor: pointer;
         background-color: var(--gray-100);
     }
     &__title{
@@ -558,3 +588,83 @@ p{
         aspect-ratio: auto 4/3;
     }
 }
+.icon-btn{
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-500);
+}
+.profile{
+    display: flex;
+    flex-direction: row;
+    margin: 80px;
+    &__left{
+        width: 280px;
+    }
+    &__avatar{
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        margin-bottom: 24px
+    }
+    &__name{
+        @include h5;
+        margin-bottom: 16px;
+    }
+    &__stats{
+        p{
+            @include body-regular;
+        }
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        margin-bottom: 16px
+    }
+    &__num{
+        font-weight: 700;
+        color: var(--black);
+    }
+    &__about-heading{
+        margin-top: 24px;
+        font-weight: 700;
+        color: var(--black);
+        margin-bottom: 8px;
+    }
+    &__about{
+        @include body-regular;
+        margin-bottom: 16px;
+    }
+    &__link{
+        color: var(--blue);
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 4px;
+        p{
+            @include body-regular;
+            color: var(--blue);
+            font-weight: 500;
+        }
+    }
+    &__icon-input{
+        display: flex;
+        gap: 12px;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 16px;
+        div{
+            width: 100%;
+        }
+    }
+    &__input{
+        margin-bottom: 8px;
+    }
+    &__buttons{
+        margin-top: 24px;
+    }
+}
+
+

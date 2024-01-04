@@ -56,7 +56,7 @@ const Upload = () => {
                 state={form.liveSiteUrl}
                 placeholder="https://jsmastery.pro"
                 setState={(value) => handleStateChange('liveSiteUrl', value)}
-                required={ArrowTrendingUpIcon}
+                required={true}
             />
 
             <InputField

@@ -55,6 +55,7 @@ passport.use(new GithubStrategy(
         scope: ['user:email']
     },
     function (req: Request, accessToken: any, refreshToken: any, profile: any, done: any) {
+        console.log(profile)
         const name = profile.displayName;
         const email = profile.emails[0].value;
         const avatar = profile.photos[0].value;

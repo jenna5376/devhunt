@@ -2,7 +2,11 @@ import MenuItem from "./MenuItem"
 import { menuItems } from "../constant"
 
 const Menu = () => {
-  return (
+    const logout = () => {
+        window.open("http://localhost:4000/auth/signout", "_self");
+    };
+
+    return (
     <div className='menu'>
         <div className="menu__user">
             <p className="menu__name">Jenna Han</p>
@@ -22,7 +26,7 @@ const Menu = () => {
             })}
         </div>
         <div className="menu__external">
-        {menuItems.slice(3,6).map(link => {
+            {menuItems.slice(3,5).map(link => {
                 return (
                     <MenuItem 
                         title={link.title}
@@ -32,9 +36,11 @@ const Menu = () => {
                     />
                 )
             })}
+            <div className="menu-item" onClick={logout}>
+                <p className="menu-item__title">Sign Out</p>
+            </div>
         </div>
     </div>
-  )
+    )
 }
-
 export default Menu

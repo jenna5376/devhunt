@@ -30,11 +30,6 @@ export const menuItems = [
       link: "/",
       external: true,
       iconRight: true
-    },
-    {
-      title: "Sign Out",
-      link: "/",
-      external: true
     }
   ];
   
