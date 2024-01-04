@@ -600,11 +600,12 @@ p{
     display: flex;
     flex-direction: row;
     margin: 80px;
+    gap: 64px;
     &__projects{
         flex-grow: 2;
     }
     .projects{
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         margin: 0;
         margin-top: 24px;
     }
@@ -672,6 +673,11 @@ p{
     }
     &__buttons{
         margin-top: 24px;
+    }
+    &__count{
+        font-weight: 400;
+        color: var(--gray-400);
+        margin-left: 4px;
     }
 }
 

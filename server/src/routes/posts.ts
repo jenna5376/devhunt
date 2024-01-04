@@ -7,7 +7,6 @@ router.get('/', getPosts);
 router.post('/upload', uploadPost);
 router.put('/like', likePost);
 router.get('/:user', getUserPosts);
-router.get('/:user/liked', getLikedPosts);
-// router.put('/likedPosts', likePost);
+router.get('/liked/:user', getLikedPosts);
 
 export default router;

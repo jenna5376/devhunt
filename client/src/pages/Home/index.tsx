@@ -1,8 +1,8 @@
-import ProjectCard from "../../components/ProjectCard"
 import Categories from "./Categories"
 import { useEffect, useState } from "react";
 import axios from "axios";
 import arrow from "../../assets/pixel-arrow.svg"
+import Projects from "../../components/Projects";
 
 //todo create project cards component
 interface Post extends Document {
@@ -55,22 +55,10 @@ const Home = ({user}: Props) => {
 					setSelected={setSelected}
 				/>
 			</section>
-			<section className="projects">
-				{projects.map((project) => {
-				return (
-					<ProjectCard 
-						postId={project._id}
-						image="" 
-						title={project.title}
-						name="" 
-						avatarUrl="" 
-						userId={user._id}
-						likes={project.likeCount}
-						views={project.viewCount}
-					/>
-				)
-				})}
-			</section>
+			<Projects
+				projects={projects}
+				user={user}
+			/>
 		</main>
 	)
 }

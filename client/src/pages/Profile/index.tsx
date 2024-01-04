@@ -3,7 +3,7 @@ import Info from "./ProfileInfo";
 import EditProfile from "./EditProfile";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import ProjectCard from "../../components/ProjectCard";
+import Projects from "../../components/Projects";
 
 interface Props{
 	user: any
@@ -11,25 +11,27 @@ interface Props{
 }
 
 interface Post extends Document {
-	title: string;
-	creator: string;
-	tags: string[];
-	githubLink: string;
-	demoLink?: string;
-	// selectedFile: string;
-	viewCount: number;
-	likeCount: number;
-	createdAt: Date;
+    title: string;
+    creator: string;
+    tags: string[];
+    githubLink: string;
+    demoLink?: string;
+    // selectedFile: string;
+    viewCount: number;
+    likeCount: number;
+    createdAt: Date;
+    _id: string;
 }
 
-
+//todo user interface
 const Profile = ({user, setUser}: Props) => {
 	const [selected, setSelected] = useState(useParams().category || "work");
 	const [edit, setEdit] = useState(false);
 	const [projects, setProjects] = useState<Array<Post>>([]);
+	const [liked, setLiked] = useState<Array<Post>>(user.likedPosts);
 	const navigate = useNavigate();
 	
-	
+	//todo create fetch hook
 	useEffect(() => {
 		const fetchProjects = async () => {
 			try {
@@ -42,6 +44,7 @@ const Profile = ({user, setUser}: Props) => {
 			}
 		};
 		fetchProjects();
+		console.log(liked)
 	}, []);
 
 	function setCategory(category?: string): void {
@@ -74,32 +77,20 @@ const Profile = ({user, setUser}: Props) => {
 						className={`chip ${selected==='work' ? 'chip--selected' : ''}`}
 						onClick={() => setCategory()}
 					>
-						Work 5
+						Work<span className="profile__count">{projects.length}</span>
 					</button>
 					<button
 						type="button"
 						className={`chip ${selected==='liked' ? 'chip--selected' : ''}`}
 						onClick={() => setCategory('liked')}
 					>
-						Liked Projects
+						Liked Projects<span className="profile__count">{projects.length}</span>
 					</button>
 				</ul>
-				<section className="projects">
-					{projects.map((project) => {
-					return (
-						<ProjectCard 
-							postId=""
-							image="" 
-							title={project.title}
-							name="" 
-							avatarUrl="" 
-							userId=""
-							likes={project.likeCount}
-							views={project.viewCount}
-						/>
-					)
-					})}
-				</section>
+				<Projects 
+					projects={selected === "work" ? projects : liked }
+					user={user}
+				/>
 			</div>
 		</div>
 	)

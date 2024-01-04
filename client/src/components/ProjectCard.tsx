@@ -14,11 +14,7 @@ interface Props {
     views: number;
 };
 
-
 const ProjectCard = ({ postId, image, title, name, avatarUrl, userId, likes, views }: Props) => {
-    
-    const [likedProjects, setLikedProjects] = useState([]);
-
     function incrementHeart(evt: React.SyntheticEvent){
         evt.preventDefault();
         evt.stopPropagation();
