@@ -30,7 +30,7 @@ const App: React.FC = () => {
       <Navbar user={user} />
       <Routes>
         <Route path="/" element={<Home/>}></Route>
-        <Route path="/upload" element={<Upload/>}></Route>
+        <Route path="/upload" element={<Upload user={user} />}></Route>
         <Route path="/sign-up" element={<SignUp/>}></Route>
         <Route path="/profile" element={<Profile user={user} setUser={setUser}/>}></Route>
       </Routes>

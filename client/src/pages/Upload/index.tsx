@@ -1,25 +1,31 @@
 import InputField from "../../components/InputField"
 import React, { useState } from "react"
 import RadioButton from "../../components/RadioButton"
-import { ArrowTrendingUpIcon } from "@heroicons/react/24/solid"
+import axios from "axios"
 
-const Upload = () => {
+interface Props{
+    user: any
+  }
+
+const Upload = ({user}: Props) => {
+    
     type FormState = {
         title: string;
-        // description: string;
-        image: string;
-        liveSiteUrl: string;
-        githubUrl: string;
-        category: string;
+        creator: any;
+        // image: string;
+        github: string;
+        website: string;
+        // category: string;
         displayReadme: string;
     };
 
     const [form, setForm] = useState<FormState>({
         title: "",
-        image: "",
-        liveSiteUrl: "",
-        githubUrl: "",
-        category: "",
+        creator: user._id,
+        // image: "",
+        github: "",
+        website: "",
+        // category: "",
         displayReadme: "yes"
     })
 
@@ -27,9 +33,18 @@ const Upload = () => {
         setForm((prevForm) => ({ ...prevForm, [fieldName]: value }));
     };
 
-    const handleSubmit = (evt: React.FormEvent) => {
+    const handleSubmit = async (evt: React.FormEvent) => {
         evt.preventDefault();
         console.log(form)
+        try {
+        await axios.post(
+            "http://localhost:4000/posts/upload",
+            { ...form }
+        );
+        alert("Recipe Created");
+        } catch (error) {
+            console.error(error);
+        }
     }
     
     const isChecked = (value: string) => form.displayReadme === value;
@@ -53,18 +68,18 @@ const Upload = () => {
             <InputField
                 type="url"
                 title="GitHub Link"
-                state={form.liveSiteUrl}
+                state={form.website}
                 placeholder="https://jsmastery.pro"
-                setState={(value) => handleStateChange('liveSiteUrl', value)}
+                setState={(value) => handleStateChange('website', value)}
                 required={true}
             />
 
             <InputField
                 type="url"
                 title="Demo Site"
-                state={form.githubUrl}
+                state={form.github}
                 placeholder="www.devhunt.com"
-                setState={(value) => handleStateChange('githubUrl', value)}
+                setState={(value) => handleStateChange('github', value)}
             />
             <fieldset className="upload__fieldset">
                 <legend className="upload__legend">Would you like to display your GitHub README?</legend>

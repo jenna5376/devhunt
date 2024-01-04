@@ -4,8 +4,8 @@ interface IPost extends Document {
     title: string;
     creator: mongoose.Schema.Types.ObjectId,
     tags: string[];
-    githubLink: string;
-    demoLink?: string;
+    github: string;
+    website?: string;
     selectedFile: string;
     viewCount: number;
     likeCount: number;
@@ -25,10 +25,10 @@ const PostSchema: Schema = new mongoose.Schema<IPost>({
         required: true 
     },
     tags: [String],
-    githubLink: { 
+    github: { 
         type: String, 
         required: true },
-    demoLink: String,
+    website: String,
     viewCount: {
         type: Number,
         default: 0

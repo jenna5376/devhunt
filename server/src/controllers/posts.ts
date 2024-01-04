@@ -11,13 +11,13 @@ export const getPosts = async (req: Request, res: Response): Promise<void> => {
     }
 }
 
-export const createPost = async (req: Request, res: Response): Promise<void> => {
-    const body = req.body;
+export const uploadPost = async (req: Request, res: Response): Promise<void> => {
     const post = {...req.body};
     const newPost = new Post(post);
 
     try {
         await newPost.save();
+        console.log(newPost)
         res.status(201).json(newPost);
     } catch (error: any) {
         res.status(409).json({ message: error.message });
