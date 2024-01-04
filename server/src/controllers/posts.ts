@@ -26,15 +26,24 @@ export const uploadPost = async (req: Request, res: Response): Promise<void> => 
 
 //todo make this togglable
 export const likePost = async (req: Request, res: Response): Promise<void> => {
-    const post = await Post.findById(req.body.postID);
-    const user = await User.findById(req.body.userID);
+    const postId = req.body.postId;
+    const userId = req.body.userId;
+    
     try {
+        const post = await Post.findById(postId);
+        const user = await User.findById(userId);
         if (user && post){
-        user.likedPosts.push(post);
-        await user.save();
-        res.status(201).json({ likedPosts: user.likedPosts });
+            user.likedPosts.push(post);
+            await user.save();
+            const updatedPost = await Post.findOneAndUpdate( 
+                {_id: postId}, 
+                {$inc: { likeCount: +1 } },
+                {new: true}
+            );
+            res.status(201).send({user, post: updatedPost})
         }
     } catch (err) {
+        console.log(err)
         res.status(500).json(err);
     }
 }

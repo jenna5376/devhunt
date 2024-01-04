@@ -39,7 +39,7 @@ const UserSchema: Schema = new mongoose.Schema<IUser>({
     },
     likedPosts: {
         type: [mongoose.Schema.Types.ObjectId], 
-        ref: "Recipe"
+        ref: "Post"
     },
     followers: {
         type: [Array],

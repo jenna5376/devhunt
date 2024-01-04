@@ -88,14 +88,14 @@ const Profile = ({user, setUser}: Props) => {
 					{projects.map((project) => {
 					return (
 						<ProjectCard 
-						id=""
-						image="" 
-						title={project.title}
-						name="" 
-						avatarUrl="" 
-						userId=""
-						likes={project.likeCount}
-						views={project.viewCount}
+							postId=""
+							image="" 
+							title={project.title}
+							name="" 
+							avatarUrl="" 
+							userId=""
+							likes={project.likeCount}
+							views={project.viewCount}
 						/>
 					)
 					})}

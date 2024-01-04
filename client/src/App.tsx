@@ -21,7 +21,6 @@ const App: React.FC = () => {
         withCredentials:true,
       }
     ).then(res => {
-      console.log(res)
       setUser(res.data.user)
     })
   }, [])
@@ -30,7 +29,7 @@ const App: React.FC = () => {
     <>
       <Navbar user={user} />
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
+        <Route path="/" element={<Home user={user}/>}></Route>
         <Route path="/upload" element={<Upload user={user} />}></Route>
         <Route path="/sign-up" element={<SignUp/>}></Route>
         <Route path="/profile/:category?" element={<Profile user={user} setUser={setUser}/>}></Route>
