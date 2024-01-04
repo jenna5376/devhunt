@@ -3,7 +3,8 @@ interface Props {
     link: string,
     iconLeft?: any,
     iconRight?: boolean,
-    external: boolean
+    external: boolean,
+    setDisplayMenu: (value: boolean) => void
 }
 
 import { ArrowUpRightIcon } from "@heroicons/react/20/solid"
@@ -17,7 +18,7 @@ interface ConditionalWrapperProps {
 
 import { Link } from "react-router-dom";
 
-const MenuItem = ({title, link, iconLeft, iconRight, external}: Props) => {
+const MenuItem = ({title, link, iconLeft, iconRight, external, setDisplayMenu}: Props) => {
     const ConditionalWrapper = ({ condition, wrapper1, wrapper2, children }: ConditionalWrapperProps) =>
     condition ? wrapper1(children) : wrapper2(children);
 
@@ -26,10 +27,12 @@ const MenuItem = ({title, link, iconLeft, iconRight, external}: Props) => {
             <ConditionalWrapper 
                 condition={external}
                 wrapper1={children => 
-                    <a className="menu-item" target="_blank" rel="noopener" href={link}>{children}</a>
+                    <a className="menu-item" target="_blank" rel="noopener" href={link}>
+                        {children}
+                    </a>
                 }
                 wrapper2={children => 
-                    <Link className="menu-item" to={link}>{children}</Link>
+                    <Link className="menu-item" to={link} onClick={() => setDisplayMenu(false)}>{children}</Link>
                 }
             >
                 <p className="menu-item__title">{title}</p>

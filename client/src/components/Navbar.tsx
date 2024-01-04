@@ -6,57 +6,50 @@ import Menu from "./Menu";
 import Button from "./Button";
 
 interface Props{
-  user: any
+	user: any
 }
 
 const Navbar = ({user}: Props) => {
-  const [displayMenu, setDisplayMenu] = useState(false)
-  console.log(user)
+	const [displayMenu, setDisplayMenu] = useState(false)
+	console.log(user)
 
-  return (
-    <header className="nav">
-      <div className="nav__left">
-        <Link to="/">
-          <img src={logoBlack} />
-        </Link>
-        <div className="nav__search">
-          <MagnifyingGlassIcon className="nav__search__icon icon-x-small" />
-          <input className="nav__search__input" type="text" placeholder="Search"/>
-        </div>
-      </div>
-      <nav>
-        {/* <ul>
-          <li>
-            <a>
-              
-            </a>
-          </li>
-        </ul> */}
-          {displayMenu && <Menu /> }
-        <>
-          {user ? 
-            (
-              <ul className="nav__links">
-                <div className="icon-btn">
-                  <SunIcon className="icon-small"/>
-                </div> 
-                <Link to="/upload">Upload</Link>
-                <div className="nav__menu nav__menu--auth" onClick={()=>{setDisplayMenu(!displayMenu)}}>
-                  <img className="nav__avatar" src={user.avatar} />
-                  <Bars2Icon className="icon-small" />
-                </div>
-              </ul>
-              
-            ) 
-            : 
-            (
-              <Link to="/sign-up">Sign Up</Link>
-            )
-          }
-        </>
-      </nav>
-    </header>
-  )
+	return (
+		<header className="nav">
+		<div className="nav__left">
+			<Link to="/">
+			<img src={logoBlack} />
+			</Link>
+			<div className="nav__search">
+			<MagnifyingGlassIcon className="nav__search__icon icon-x-small" />
+			<input className="nav__search__input" type="text" placeholder="Search"/>
+			</div>
+		</div>
+		<nav>
+			{displayMenu && <Menu setDisplayMenu={setDisplayMenu} /> }
+			<>
+			{user ? 
+				(
+				<ul className="nav__links">
+					<div className="icon-btn">
+					<SunIcon className="icon-small"/>
+					</div> 
+					<Link to="/upload">Upload</Link>
+					<div className="nav__menu nav__menu--auth" onClick={()=>{setDisplayMenu(!displayMenu)}}>
+					<img className="nav__avatar" src={user.avatar} />
+					<Bars2Icon className="icon-small" />
+					</div>
+				</ul>
+				
+				) 
+				: 
+				(
+				<Link to="/sign-up">Sign Up</Link>
+				)
+			}
+			</>
+		</nav>
+		</header>
+	)
 }
 
 export default Navbar

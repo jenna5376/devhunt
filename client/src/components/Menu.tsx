@@ -1,7 +1,11 @@
 import MenuItem from "./MenuItem"
 import { menuItems } from "../constant"
 
-const Menu = () => {
+interface Props {
+    setDisplayMenu: (value: boolean) => void
+}
+
+const Menu = ({setDisplayMenu}: Props) => {
     const logout = () => {
         window.open("http://localhost:4000/auth/signout", "_self");
     };
@@ -20,6 +24,7 @@ const Menu = () => {
                         link={link.link}
                         external={link.external}
                         iconLeft={link.iconLeft}
+                        setDisplayMenu={setDisplayMenu}
                     />
                 )
             })}
@@ -32,6 +37,7 @@ const Menu = () => {
                         link={link.link}
                         external={link.external}
                         iconRight={link.iconRight}
+                        setDisplayMenu={setDisplayMenu}
                     />
                 )
             })}
