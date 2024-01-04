@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import Profile from "./pages/Profile/index"
+import Settings from "./pages/Settings"
 
 const App: React.FC = () => {
   const [user, setUser] = useState(null);
@@ -32,7 +33,8 @@ const App: React.FC = () => {
         <Route path="/" element={<Home/>}></Route>
         <Route path="/upload" element={<Upload user={user} />}></Route>
         <Route path="/sign-up" element={<SignUp/>}></Route>
-        <Route path="/profile" element={<Profile user={user} setUser={setUser}/>}></Route>
+        <Route path="/profile/:category?" element={<Profile user={user} setUser={setUser}/>}></Route>
+        <Route path="/settings" element={<Settings user={user}/>}></Route>
       </Routes>
       <Footer />
     </>

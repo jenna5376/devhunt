@@ -391,7 +391,7 @@ p{
         &:focus{
             padding: 10px 14px;
             border: 2px solid var(--gray-400);
-            outline: none;
+            outline: 2px solid var(--gray-200);
         }
         &:valid{
             color: var(--black)

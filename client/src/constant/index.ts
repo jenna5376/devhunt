@@ -9,7 +9,7 @@ export const menuItems = [
     },
     {
       title: "Liked projects",
-      link: "/profile",
+      link: "/profile/liked",
       iconLeft: HeartIcon,
       external: false
     },
@@ -21,13 +21,13 @@ export const menuItems = [
     },
     {
       title: "Feedback",
-      link: "/",
+      link: "mailto:hello@devhunt.app?subject=Devhunt Feedback - [subject]",
       external: true,
       iconRight: true
     },
     {
       title: "Support",
-      link: "/",
+      link: "mailto:hello@devhunt.app?subject=Devhunt Support - [subject]",
       external: true,
       iconRight: true
     }

@@ -7,6 +7,7 @@ interface Props{
     user: any
   }
 
+  //todo add image and category
 const Upload = ({user}: Props) => {
     
     type FormState = {
@@ -41,6 +42,7 @@ const Upload = ({user}: Props) => {
             "http://localhost:4000/posts/upload",
             { ...form }
         );
+        //todo redirect home
         alert("Recipe Created");
         } catch (error) {
             console.error(error);
