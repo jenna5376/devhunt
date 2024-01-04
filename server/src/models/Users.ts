@@ -7,7 +7,6 @@ interface IUser extends Document {
     avatar: string;
     googleId: number;
     githubId: number;
-    posts: Array<mongoose.Schema.Types.ObjectId>;
     likedPosts: any;
     followers: Array<string>;
     following: Array<string>;
@@ -37,10 +36,6 @@ const UserSchema: Schema = new mongoose.Schema<IUser>({
     },
     githubId: {
         type: Number
-    },
-    posts: {
-        type: [mongoose.Schema.Types.ObjectId], 
-        ref: "Recipe"
     },
     likedPosts: {
         type: [mongoose.Schema.Types.ObjectId], 

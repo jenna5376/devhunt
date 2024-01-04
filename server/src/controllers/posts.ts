@@ -39,18 +39,17 @@ export const likePost = async (req: Request, res: Response): Promise<void> => {
     }
 }
 
-//get id of liked posts
-export const getLikedPostIDs = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const user = await User.findById(req.params.userId);
-        res.status(201).json({ likedPosts: user?.likedPosts });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-}
+// //get id of liked posts
+// export const getLikedPostIDs = async (req: Request, res: Response): Promise<void> => {
+//     try {
+//         const user = await User.findById(req.params.userId);
+//         res.status(201).json({ likedPosts: user?.likedPosts });
+//     } catch (err) {
+//         console.log(err);
+//         res.status(500).json(err);
+//     }
+// }
 
-//get saved posts
 export const getLikedPosts = async (req: Request, res: Response): Promise<void> => {
     try {
         const user = await User.findById(req.params.userId);
@@ -60,6 +59,16 @@ export const getLikedPosts = async (req: Request, res: Response): Promise<void> 
         res.status(201).json({ likedPosts });
     } catch (err) {
         console.log(err);
+        res.status(500).json(err);
+    }
+}
+
+export const getUserPosts = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const posts = await Post.find({creator: req.params.user}).sort({date: -1}).lean();
+        res.status(200).send(posts);
+    }
+    catch (err) {
         res.status(500).json(err);
     }
 }

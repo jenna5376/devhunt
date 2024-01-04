@@ -600,6 +600,14 @@ p{
     display: flex;
     flex-direction: row;
     margin: 80px;
+    &__projects{
+        flex-grow: 2;
+    }
+    .projects{
+        grid-template-columns: repeat(4, 1fr);
+        margin: 0;
+        margin-top: 24px;
+    }
     &__left{
         width: 280px;
     }

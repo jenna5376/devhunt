@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ProjectDetails from "../../components/ProjectDetails";
 
+//todo create project cards component
 interface Post extends Document {
   title: string;
   creator: string;

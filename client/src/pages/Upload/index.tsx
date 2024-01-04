@@ -38,9 +38,9 @@ const Upload = ({user}: Props) => {
         evt.preventDefault();
         console.log(form)
         try {
-        await axios.post(
-            "http://localhost:4000/posts/upload",
-            { ...form }
+            await axios.post(
+                "http://localhost:4000/posts/upload",
+                { ...form }
         );
         //todo redirect home
         alert("Recipe Created");
