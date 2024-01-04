@@ -29,19 +29,19 @@ const Info = ({user, setEdit}: Props) => {
             {user.publicEmail && 
             <div className="profile__link">
                 <EnvelopeIcon className="icon-x-small" />
-                <p>{user.publicEmail}</p>
+                <a href={`mailto:${user.publicEmail}`} target="_blank"className="profile__url">{user.publicEmail}</a>
             </div>
             }
             {user.github && 
             <div className="profile__link">
                 <CodeBracketIcon className="icon-x-small" />
-                <p>{user.github}</p>
+                <a href={user.github} target="_blank"className="profile__url">{user.github}</a>
             </div>
             }
             {user.website && 
             <div className="profile__link">
                 <LinkIcon className="icon-x-small" />
-                <p>{user.website}</p>
+                <a href={user.website} target="_blank"className="profile__url">{user.website}</a>
             </div>
             }
         </div>

@@ -643,11 +643,11 @@ p{
         gap: 8px;
         align-items: center;
         margin-bottom: 4px;
-        p{
-            @include body-regular;
-            color: var(--blue);
-            font-weight: 500;
-        }
+    }
+    &__url{
+        @include body-regular;
+        color: var(--blue);
+        font-weight: 500;
     }
     &__icon-input{
         display: flex;

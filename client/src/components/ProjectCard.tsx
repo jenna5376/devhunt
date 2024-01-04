@@ -21,7 +21,6 @@ const ProjectCard = ({ id, image, title, name, avatarUrl, userId, likes, views }
     function incrementHeart(evt: React.SyntheticEvent){
         evt.preventDefault();
         evt.stopPropagation();
-        console.log('like')
         setLikeCount(likeCount + 1);
     }
     return (

@@ -9,6 +9,7 @@ const cookieSession = require("cookie-session");
 import path from 'path';
 import postRoutes from './routes/posts';
 import authRoutes from './routes/auth';
+import profileRoutes from './routes/profile'
 
 const app = express();
 app.use(express.static(path.join(__dirname, '..', 'public')));
@@ -30,8 +31,9 @@ app.use(cors({
     methods: "GET,POST,PUT,DELETE",
 }))
 
-app.use('/posts', postRoutes);
 app.use('/auth', authRoutes);
+app.use('/posts', postRoutes);
+app.use('/profile', profileRoutes);
 
 const PORT = process.env.PORT || 4000;
 

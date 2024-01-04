@@ -21,8 +21,6 @@ const MenuItem = ({title, link, iconLeft, iconRight, external}: Props) => {
     const ConditionalWrapper = ({ condition, wrapper1, wrapper2, children }: ConditionalWrapperProps) =>
     condition ? wrapper1(children) : wrapper2(children);
 
-
-    console.log(iconLeft)
     return (
         <>
             <ConditionalWrapper 

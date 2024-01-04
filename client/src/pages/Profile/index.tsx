@@ -1,13 +1,13 @@
-import Button from "../../components/Button"
 import { useState } from "react";
 import Info from "./ProfileInfo";
 import EditProfile from "./EditProfile";
 
 interface Props{
   user: any
+  setUser: (value: any) => void;
 }
 
-const Profile = ({user}: Props) => {
+const Profile = ({user, setUser}: Props) => {
   const [selected, setSelected] = useState("Work");
   const [edit, setEdit] = useState(false);
 
@@ -19,6 +19,7 @@ const Profile = ({user}: Props) => {
       /> :
         <EditProfile 
           user={user}
+          setUser={setUser}
           setEdit={setEdit}
         />
       }
