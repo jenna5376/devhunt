@@ -28,7 +28,7 @@ const Profile = ({user, setUser}: Props) => {
 	const [selected, setSelected] = useState(useParams().category || "work");
 	const [edit, setEdit] = useState(false);
 	const [projects, setProjects] = useState<Array<Post>>([]);
-	const [liked, setLiked] = useState<Array<Post>>(user.likedPosts);
+	const [liked, setLiked] = useState<Array<Post>>([]);
 	const navigate = useNavigate();
 	
 	//todo create fetch hook
@@ -44,7 +44,17 @@ const Profile = ({user, setUser}: Props) => {
 			}
 		};
 		fetchProjects();
-		console.log(liked)
+		const likedProjects = async () => {
+			try {
+				const response = await axios.get(
+					`http://localhost:4000/posts/liked/${user._id}`
+				);
+				setLiked(response.data)
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		likedProjects();
 	}, []);
 
 	function setCategory(category?: string): void {

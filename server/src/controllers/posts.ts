@@ -61,11 +61,11 @@ export const likePost = async (req: Request, res: Response): Promise<void> => {
 
 export const getLikedPosts = async (req: Request, res: Response): Promise<void> => {
     try {
-        const user = await User.findById(req.params.userId);
+        const user = await User.findById(req.params.user);
         const likedPosts = await Post.find({
             _id: { $in: user?.likedPosts },
         });
-        res.status(201).json({ likedPosts });
+        res.status(201).json(likedPosts);
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
