@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { HeartIcon, EyeIcon, ArrowUpRightIcon } from '@heroicons/react/24/outline'
+import { HeartIcon, EyeIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline"
 import { useState } from "react";
 
 interface Props {

@@ -13,7 +13,7 @@ const Categories = ({selected, setSelected} : Props) => {
           <button
               key={category}
               type="button"
-              className={`chip ${category==selected ? 'chip--selected' : '' }`}
+              className={`chip ${category==selected ? "chip--selected" : "" }`}
               onClick={() => setSelected(category)}
           >
               {category}

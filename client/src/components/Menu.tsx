@@ -7,7 +7,7 @@ const Menu = () => {
     };
 
     return (
-    <div className='menu'>
+    <div className="menu">
         <div className="menu__user">
             <p className="menu__name">Jenna Han</p>
             <p className="menu__email">jennahan@nyu.edu</p>

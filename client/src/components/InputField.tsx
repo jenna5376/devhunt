@@ -12,7 +12,7 @@ const InputField = ({ type, title, state, placeholder, setState, required, texta
     return (
         <div className="input">
             {title &&
-                <label className={`input__label ${required ? 'input__label--required' : ''}`}>{title}</label>
+                <label className={`input__label ${required ? "input__label--required" : ""}`}>{title}</label>
             }
             {textarea ? 
             <textarea cols={50} rows={5}

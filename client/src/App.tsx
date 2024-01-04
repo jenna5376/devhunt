@@ -1,13 +1,13 @@
-import Navbar from './components/Navbar'
-import { Route, Routes } from 'react-router-dom'
-import Home from './pages/Home/index'
-import Footer from './components/Footer'
-import './styles/global.scss'
-import Upload from './pages/Upload'
-import SignUp from './pages/SignUp'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import Profile from './pages/Profile/index'
+import Navbar from "./components/Navbar"
+import { Route, Routes } from "react-router-dom"
+import Home from "./pages/Home/index"
+import Footer from "./components/Footer"
+import "./styles/global.scss"
+import Upload from "./pages/Upload"
+import SignUp from "./pages/SignUp"
+import { useEffect, useState } from "react"
+import axios from "axios"
+import Profile from "./pages/Profile/index"
 
 const App: React.FC = () => {
   const [user, setUser] = useState(null);

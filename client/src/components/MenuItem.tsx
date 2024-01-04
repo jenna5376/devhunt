@@ -6,7 +6,7 @@ interface Props {
     external: boolean
 }
 
-import { ArrowUpRightIcon } from '@heroicons/react/20/solid'
+import { ArrowUpRightIcon } from "@heroicons/react/20/solid"
 
 interface ConditionalWrapperProps {
     condition: boolean;
@@ -26,14 +26,14 @@ const MenuItem = ({title, link, iconLeft, iconRight, external}: Props) => {
             <ConditionalWrapper 
                 condition={external}
                 wrapper1={children => 
-                    <a className="menu-item" target='_blank' rel="noopener" href={link}>{children}</a>
+                    <a className="menu-item" target="_blank" rel="noopener" href={link}>{children}</a>
                 }
                 wrapper2={children => 
-                    <Link className='menu-item' to={link}>{children}</Link>
+                    <Link className="menu-item" to={link}>{children}</Link>
                 }
             >
                 <p className="menu-item__title">{title}</p>
-                {iconRight && <ArrowUpRightIcon className='icon-small' />}
+                {iconRight && <ArrowUpRightIcon className="icon-small" />}
             </ConditionalWrapper>
         </>
     )

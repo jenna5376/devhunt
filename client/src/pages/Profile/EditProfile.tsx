@@ -1,8 +1,8 @@
-import { FormEvent, useState } from 'react'
-import InputField from '../../components/InputField';
+import { FormEvent, useState } from "react"
+import InputField from "../../components/InputField";
 import { CameraIcon, EnvelopeIcon, CodeBracketIcon, LinkIcon } from "@heroicons/react/24/outline";
-import Button from '../../components/Button';
-import axios from 'axios'
+import Button from "../../components/Button";
+import axios from "axios"
 
 interface Props {
     user: any,
@@ -58,58 +58,58 @@ const EditProfile = ({user, setEdit, setUser}: Props) => {
 }
 
     return (
-    <form className='profile__left' onSubmit={(evt) => onSubmit(evt)}>
+    <form className="profile__left" onSubmit={(evt) => onSubmit(evt)}>
         <img className="profile__avatar" src={user.avatar} />
         <div className="profile__input">
             <InputField
-                title='Name'
+                title="Name"
                 state={form.name}
                 placeholder= "Name"
-                setState={(value) => handleStateChange('name', value)}
+                setState={(value) => handleStateChange("name", value)}
             />
         </div>
         <div className="profile__input">
             <InputField
-                title='About'
+                title="About"
                 state={form.about}
                 placeholder= "Add a bio"
-                setState={(value) => handleStateChange('about', value)}
+                setState={(value) => handleStateChange("about", value)}
                 textarea={true}
             />
         </div>
         <div className="profile__icon-input">
-            <EnvelopeIcon className='icon' />
+            <EnvelopeIcon className="icon" />
             <InputField
                 state={form.publicEmail}
                 placeholder= "Email"
-                setState={(value) => handleStateChange('publicEmail', value)}
+                setState={(value) => handleStateChange("publicEmail", value)}
             />
         </div>
         <div className="profile__icon-input">
-            <CodeBracketIcon className='icon' />
+            <CodeBracketIcon className="icon" />
             <InputField
                 state={form.github}
                 placeholder= "GitHub URL"
-                setState={(value) => handleStateChange('github', value)}
+                setState={(value) => handleStateChange("github", value)}
             />
         </div>
         <div className="profile__icon-input">
-            <LinkIcon className='icon' />
+            <LinkIcon className="icon" />
             <InputField
                 state={form.website}
                 placeholder= "website"
-                setState={(value) => handleStateChange('website', value)}
+                setState={(value) => handleStateChange("website", value)}
             />
         </div>
         <div className="profile__buttons">
             <button className="button" type="submit">Upload Project</button>
             <Button 
-                text='Cancel'
+                text="Cancel"
                 onclick={() => {setEdit(false)}}
             />
         </div>
     </form>
-  )
+    )
 }
 
 export default EditProfile
