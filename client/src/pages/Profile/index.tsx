@@ -6,6 +6,8 @@ import axios from "axios";
 import Projects from "../../components/Projects";
 import { Post } from "../../models/models";
 import { User } from "../../models/models"
+import Button from "../../components/Button";
+import { CodeBracketIcon } from "@heroicons/react/24/outline";
 
 interface Props{
 	user: User
@@ -93,10 +95,25 @@ const Profile = ({user, setUser}: Props) => {
 						Liked Projects<span className="profile__count">{liked.length}</span>
 					</button>
 				</ul>
-				<Projects 
+				{
+					projects.length === 0 && (
+						<div className="empty">
+							<div className="empty__icon-container">
+								<CodeBracketIcon className="icon-small empty__icon"/>
+							</div>
+							<p className="empty__heading">No projects yet</p>
+							<p className="empty__text">When you upload a project, it'll show up here</p>
+							<Button
+								text="Upload Project"
+								onclick={() => navigate("/upload")}
+							/>
+						</div>
+					)
+				}
+				{/* <Projects 
 					projects={selected === "work" ? projects : liked }
 					user={user}
-				/>
+				/> */}
 			</div>
 		</div>
 	)
