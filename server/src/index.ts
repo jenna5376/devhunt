@@ -56,10 +56,8 @@ const upload = multer({
 })
 
 app.post('/upload', upload.single('file'), async (req, res) => {
-    console.log(req.file?.filename)
     const post = JSON.parse(req.body.data)
     post.image = req.file?.filename
-    console.log(post);
 
     const newPost = new Post(post);
 

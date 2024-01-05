@@ -1,14 +1,16 @@
 import InputField from "../../components/InputField"
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import RadioButton from "../../components/RadioButton"
 import axios from "axios"
-import FileUpload from "../../components/FileUpload"
 import { useNavigate } from "react-router-dom"
 import { User } from "../../models/models"
+import Button from "../../components/Button"
+
+import { categoryFilters } from "../../constant/index"
 
 interface Props{
-    user?: User
-  }
+    user: User
+}
 
   //todo add image and category
 const Upload = ({user}: Props) => {
@@ -36,6 +38,13 @@ const Upload = ({user}: Props) => {
         // category: "",
         readme: 1
     })
+
+    const fileInput = useRef<HTMLInputElement>(null)
+
+    const uploadFile = () => {
+        if (fileInput.current == null) return;
+        fileInput.current.click();
+    };
 
     const handleStateChange = (fieldName: string, value: string | number) => {
         setForm((prevForm) => ({ ...prevForm, [fieldName]: value }));
@@ -78,8 +87,28 @@ const Upload = ({user}: Props) => {
             onSubmit={handleSubmit}
             className="upload__form"
         >
-            <div>
-                <input className="input" type="file" onChange={handleFileChange} />
+            <div className="input">
+                <label className="input__label input__label--required" >Image</label>
+                <input required ref={fileInput} className="file-input" type="file" onChange={handleFileChange} />
+                <Button
+                    text="Upload Image"
+                    onclick={() => uploadFile()}
+                    color="secondary"
+                    fullWidth={true}
+                />
+            </div>
+            <div className="input">
+                <label className="input__label input__label--required" >Category</label>
+                <select required className="input__field select">
+                    <option value="">Select a category</option>
+                    {categoryFilters.slice(1,categoryFilters.length).map((category) => (
+                        <option
+                            value={category}
+                        >
+                            {category}
+                        </option>
+                    ))}
+                </select>
             </div>
             <InputField
                 title="Project Title"
@@ -120,7 +149,11 @@ const Upload = ({user}: Props) => {
                     checked={form.readme === 0}
                 />
             </fieldset>
-            <button className="btn btn--large" type="submit">Upload Project</button>
+            <Button
+                size="large"
+                submit={true}
+                text="Upload Project"
+            />
         </form>
     </div>
   )

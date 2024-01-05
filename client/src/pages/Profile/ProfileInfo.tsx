@@ -20,6 +20,7 @@ const Info = ({user, setEdit}: Props) => {
                 text="Edit Profile"
                 color="secondary"
                 onclick={() => setEdit(true)}
+                fullWidth={true}
             />
             {user.about && 
             <div>
