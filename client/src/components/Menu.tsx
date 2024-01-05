@@ -14,8 +14,6 @@ const Menu = ({displayMenu, setDisplayMenu, auth}: Props) => {
         if (menu.current == null) return;
         
         if(displayMenu && !menu.current?.contains(evt.target as Node)){
-            console.log(evt.target)
-            console.log('hiding')
             setDisplayMenu(false)
         }
     }
@@ -33,9 +31,10 @@ const Menu = ({displayMenu, setDisplayMenu, auth}: Props) => {
                 <p className="menu__email">jennahan@nyu.edu</p>
             </div>
             <div className="menu__internal">
-                {menuItems.slice(0,2).map(link => {
+                {menuItems.slice(0,2).map((link, index) => {
                     return (
-                        <MenuItem 
+                        <MenuItem
+                            key={index}
                             title={link.title}
                             link={link.link}
                             external={link.external}
@@ -47,9 +46,10 @@ const Menu = ({displayMenu, setDisplayMenu, auth}: Props) => {
             </div>
         </>}
         <div className="menu__external">
-            {menuItems.slice(3,5).map(link => {
+            {menuItems.slice(3,5).map((link, index) => {
                 return (
                     <MenuItem 
+                        key={index}
                         title={link.title}
                         link={link.link}
                         external={link.external}

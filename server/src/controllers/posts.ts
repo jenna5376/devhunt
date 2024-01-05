@@ -17,7 +17,6 @@ export const uploadPost = async (req: Request, res: Response): Promise<void> => 
 
     try {
         await newPost.save();
-        console.log(newPost)
         res.status(201).json(newPost);
     } catch (error: any) {
         res.status(409).json({ message: error.message });
@@ -47,17 +46,6 @@ export const likePost = async (req: Request, res: Response): Promise<void> => {
         res.status(500).json(err);
     }
 }
-
-// //get id of liked posts
-// export const getLikedPostIDs = async (req: Request, res: Response): Promise<void> => {
-//     try {
-//         const user = await User.findById(req.params.userId);
-//         res.status(201).json({ likedPosts: user?.likedPosts });
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json(err);
-//     }
-// }
 
 export const getLikedPosts = async (req: Request, res: Response): Promise<void> => {
     try {

@@ -1,17 +1,17 @@
 import { FormEvent, useState } from "react"
 import InputField from "../../components/InputField";
-import { CameraIcon, EnvelopeIcon, CodeBracketIcon, LinkIcon } from "@heroicons/react/24/outline";
+import { EnvelopeIcon, CodeBracketIcon, LinkIcon } from "@heroicons/react/24/outline";
 import Button from "../../components/Button";
 import { User } from "../../models/models";
+import { useEffect } from "react";
 
 interface Props {
     user: User
     setEdit: (value: boolean) => void;
-    setUser: (value: any) => void;
+    setUser: (value: User) => void;
 }
 
 const EditProfile = ({user, setEdit, setUser}: Props) => {
-
     type FormState = {
         id: String,
         name: string;
@@ -34,7 +34,7 @@ const EditProfile = ({user, setEdit, setUser}: Props) => {
         setForm((prevForm) => ({ ...prevForm, [fieldName]: value }));
     };
 
- async function onSubmit(evt: FormEvent) {
+async function onSubmit(evt: FormEvent) {
     evt.preventDefault();
     const profileInfo = { ...form };
     

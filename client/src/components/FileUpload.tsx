@@ -13,12 +13,9 @@ const FileUpload = () => {
 
     const handleUpload = (evt: React.FormEvent) => {
         evt.preventDefault()
-        console.log('uploading')
         if(file) {
-            console.log(file)
             const formData = new FormData();
             formData.append("file", file);
-            console.log(formData)
             axios.post("http://localhost:4000/upload", formData)
                 .then(res => console.log(res))
                 .catch(err => console.log(err))

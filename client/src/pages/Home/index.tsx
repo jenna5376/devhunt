@@ -20,7 +20,6 @@ const Home = ({user}: Props) => {
 			try {
 				const response = await axios.get("http://localhost:4000/posts");
 				setProjects(response.data);
-				console.log(response.data)
 			} catch (err) {
 			console.log(err);
 		}}

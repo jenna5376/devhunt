@@ -36,8 +36,6 @@ const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views
         }
     }
 
-    console.log(image)
-
     return (
         <div key={postId}>
             <Link to={`/project/${postId}`}>

@@ -64,14 +64,16 @@ const Profile = ({user, setUser}: Props) => {
 	
 	return (
 		<div className="profile">
-			{!edit ? <Info
-				user={user}
-				setEdit={setEdit}	
-			/> :
+			{!edit ? 
+				<Info
+					user={user}
+					setEdit={setEdit}	
+				/> 
+				:
 				<EditProfile 
-				user={user}
-				setUser={setUser}
-				setEdit={setEdit}
+					user={user}
+					setUser={setUser}
+					setEdit={setEdit}
 				/>
 			}
 			<div className="profile__projects">

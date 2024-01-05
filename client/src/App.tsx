@@ -14,7 +14,7 @@ import { User } from "./models/models"
 const App: React.FC = () => {
   const [user, setUser] = useState<User | undefined>(undefined);
 
- useEffect(() => {
+useEffect(() => {
     axios(
       {
         method: "GET",
@@ -25,6 +25,11 @@ const App: React.FC = () => {
       setUser(res.data.user)
     })
   }, [])
+
+  useEffect(() => {
+    console.log('updated user')
+    console.log(user)
+  }, [user])
 
   return (
     <>
