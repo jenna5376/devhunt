@@ -26,11 +26,6 @@ useEffect(() => {
     })
   }, [])
 
-  useEffect(() => {
-    console.log('updated user')
-    console.log(user)
-  }, [user])
-
   return (
     <>
       <Navbar user={user} />

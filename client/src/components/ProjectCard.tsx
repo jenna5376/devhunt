@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { HeartIcon, EyeIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline"
 import { useState } from "react";
 import axios from "axios";
+import ProjectDetails from "./ProjectDetails";
 
 interface Props {
     postId: string;
@@ -15,6 +16,9 @@ interface Props {
 };
 
 const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views }: Props) => {
+
+    const [openModal, setOpenModal] = useState(false)
+
     function incrementHeart(evt: React.SyntheticEvent){
         evt.preventDefault();
         evt.stopPropagation();
@@ -38,8 +42,9 @@ const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views
 
     return (
         <div key={postId}>
-            <Link to={`/project/${postId}`}>
-                <div className="project-card">
+            {openModal && <ProjectDetails id={postId} />}
+            {/* <Link to={`/project/${postId}`}> */}
+                <div className="project-card" onClick={() => setOpenModal(true)}>
                     <div className="project-card__cover">
                         <img className="project-card__img" src={`http://localhost:4000/images/${image}`} />
                         <div className="project-card__buttons">
@@ -66,7 +71,7 @@ const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views
                     </div>
                     <p className="project-card__title">{title}</p>
                 </div>
-            </Link>
+            {/* </Link> */}
         </div>
     )
 }
