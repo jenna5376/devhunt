@@ -36,12 +36,14 @@ const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views
         }
     }
 
+    console.log(image)
+
     return (
         <div key={postId}>
             <Link to={`/project/${postId}`}>
                 <div className="project-card">
-                    <div className="project-card__img">
-                        <img src={image} />
+                    <div className="project-card__cover">
+                        <img className="project-card__img" src={`http://localhost:4000/images/${image}`} />
                         <div className="project-card__buttons">
                             <div className="project-card__button" onClick={(evt) => incrementHeart(evt)}>
                                 <HeartIcon className="icon-small" />

@@ -2,6 +2,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 interface IPost extends Document {
     title: string;
+    image: string;
     creator: mongoose.Schema.Types.ObjectId,
     tags: string[];
     github: string;
@@ -10,8 +11,7 @@ interface IPost extends Document {
     viewCount: number;
     likeCount: number;
     createdAt: Date;
-
-    //add image url
+    readme: boolean;
 }
 
 const PostSchema: Schema = new mongoose.Schema<IPost>({
@@ -19,15 +19,19 @@ const PostSchema: Schema = new mongoose.Schema<IPost>({
         type: String, 
         required: true 
     },
+    image: {
+        type: String
+    },
     creator: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: "User",
-        required: true 
+        // required: true 
     },
     tags: [String],
     github: { 
         type: String, 
-        required: true },
+        // required: true 
+    },
     website: String,
     viewCount: {
         type: Number,
@@ -40,6 +44,9 @@ const PostSchema: Schema = new mongoose.Schema<IPost>({
     createdAt: {
         type: Date,
         default: new Date()
+    },
+    readme: {
+        type: Boolean
     }
 });
 

@@ -21,8 +21,8 @@ const Navbar = ({user}: Props) => {
 			<img src={logoBlack} />
 			</Link>
 			<div className="nav__search">
-			<MagnifyingGlassIcon className="nav__search__icon icon-x-small" />
-			<input className="nav__search__input" type="text" placeholder="Search"/>
+				<MagnifyingGlassIcon className="nav__search__icon icon-x-small" />
+				<input className="nav__search__input" type="text" placeholder="Search"/>
 			</div>
 		</div>
 		<nav>

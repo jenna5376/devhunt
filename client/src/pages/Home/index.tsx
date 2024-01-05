@@ -14,6 +14,7 @@ interface Post extends Document {
 	demoLink?: string;
 	// selectedFile: string;
 	viewCount: number;
+	image: string;
 	likeCount: number;
 	createdAt: Date;
 }
@@ -29,8 +30,9 @@ const Home = ({user}: Props) => {
 	useEffect(() => {
 		const fetchProjects = async () => {
 			try {
-			const response = await axios.get("http://localhost:4000/posts");
-			setProjects(response.data);
+				const response = await axios.get("http://localhost:4000/posts");
+				setProjects(response.data);
+				console.log(response.data)
 			} catch (err) {
 			console.log(err);
 		}}

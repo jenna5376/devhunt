@@ -13,7 +13,7 @@ const Footer = () => {
         <footer className="footer">
         <p className="footer__left">© 2024 Devhunt. All rights reserved.</p>
         <img className="footer__icon" src={dIconBlack} />
-        <p className="footer__right"><span className="footer__count">1020</span> dev projects</p>
+        {/* <p className="footer__right"><span className="footer__count">1020</span> dev projects</p> */}
         </footer>
       }
     </>

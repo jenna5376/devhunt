@@ -11,6 +11,7 @@ interface Post extends Document {
     likeCount: number;
     createdAt: Date;
     _id: string;
+    image: string;
 }
 
 interface Props {
@@ -22,10 +23,11 @@ const Projects = ({projects, user}: Props) => {
   return (
     <section className="projects">
         {projects.map((project) => {
+            console.log(project.image)
         return (
             <ProjectCard 
                 postId={project._id || ""}
-                image="" 
+                image={project.image} 
                 title={project.title}
                 name="" 
                 avatarUrl="" 

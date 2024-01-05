@@ -1,6 +1,6 @@
 interface Props {
     title: string,
-    value: string,
+    value: number | string,
     checked: boolean,
     handleChange: (value: string) => void
 }
