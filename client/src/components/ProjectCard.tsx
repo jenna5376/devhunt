@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import { HeartIcon, EyeIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline"
 import { HeartIcon as FilledHeartIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
 import axios from "axios";
-import ProjectDetails from "./ProjectDetails";
-import { Post } from "../models/models";
+import { useLocation } from "react-router-dom";
 
 interface Props {
     postId: string;
@@ -20,8 +18,6 @@ interface Props {
 };
 
 const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views, liked, setLiked }: Props) => {
-
-    const [openModal, setOpenModal] = useState(false)
 
     function incrementHeart(evt: React.SyntheticEvent){
         evt.preventDefault();
@@ -45,46 +41,45 @@ const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views
     }
 
     const isLiked = (id: string) => liked.includes(id)
-
-    isLiked(postId)
+    const location = useLocation();
 
     return (
-        <div key={postId}>
-            {openModal && <ProjectDetails id={postId} />}
-            {/* <Link to={`/project/${postId}`}> */}
-                <div className="project-card" onClick={() => setOpenModal(true)}>
-                    <div className="project-card__cover">
-                        <img className="project-card__img" src={`http://localhost:4000/images/${image}`} />
-                        <div className="project-card__buttons">
-                            <div className="project-card__button" onClick={(evt) => incrementHeart(evt)}>
-                                {isLiked(postId) ?
-                                    <FilledHeartIcon className="icon-small filled-heart" />
-                                    :
-                                    <HeartIcon className="icon-small" />
-                                }
-                            </div>
-                            <div className="project-card__button">
-                                <ArrowUpRightIcon className="icon-small" />
-                            </div>
+        <Link 
+            to={`/post/${postId}`}
+            state={{ previousLocation: location }}
+        >
+            <div className="project-card">
+                <div className="project-card__cover">
+                    <img className="project-card__img" src={`http://localhost:4000/images/${image}`} />
+                    <div className="project-card__buttons">
+                        <div className="project-card__button" onClick={(evt) => incrementHeart(evt)}>
+                            {isLiked(postId) ?
+                                <FilledHeartIcon className="icon-small filled-heart" />
+                                :
+                                <HeartIcon className="icon-small" />
+                            }
                         </div>
-                        <div className="project-card__avatar">
-                            <img src={avatarUrl} />
+                        <div className="project-card__button">
+                            <ArrowUpRightIcon className="icon-small" />
                         </div>
                     </div>
-                    <div className="project-card__stats">
-                        <div className="project-card__stat">
-                            <HeartIcon className="icon-x-small" />
-                            <p>{likes}</p>
-                        </div>
-                        <div className="project-card__stat">
-                            <EyeIcon className="icon-x-small" />
-                            <p>{views}</p>
-                        </div>
+                    <div className="project-card__avatar">
+                        <img src={avatarUrl} />
                     </div>
-                    <p className="project-card__title">{title}</p>
                 </div>
-            {/* </Link> */}
-        </div>
+                <div className="project-card__stats">
+                    <div className="project-card__stat">
+                        <HeartIcon className="icon-x-small" />
+                        <p>{likes}</p>
+                    </div>
+                    <div className="project-card__stat">
+                        <EyeIcon className="icon-x-small" />
+                        <p>{views}</p>
+                    </div>
+                </div>
+                <p className="project-card__title">{title}</p>
+            </div>
+        </Link>
     )
 }
 

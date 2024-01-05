@@ -602,33 +602,74 @@ p{
     }
 }
 
-.modal{
+.modal-bg{
     z-index: 1000;
     position: absolute;
-    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #00000086;
-    cursor: auto;
+    top: 0;
 }
 
 .project-det{
-    z-index: 20000;
+    z-index: 1002;
     margin: auto;
-    margin-top: 200px;
     width: 880px;
     background-color: var(--white);
     padding: 32px;
     border: 1px solid var(--gray-200);
     border-radius: 24px;
+    margin-top: 80px;
 }
 
 .project-det{
+    &__header{
+        display: flex;
+        flex-direction: row;
+    }
+    &__left{
+        flex-grow: 2
+    }
+    &__title{
+        @include h5;
+        margin-bottom: 8px;
+    }
+    &__info{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+    }
+    &__metadata{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        color: var(--gray-500);
+    }
+    &__stat{
+        @include body-small
+    }
+    &__dot{
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: var(--gray-300);
+    }
+    &__btns{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    &__img-wrapper{
+        max-width: 560px;
+    }
     &__img{
-        background-color: var(--gray-100);
-        width: 600px;
-        aspect-ratio: auto 4/3;
+        width: 100%;
+        border-radius: 12px;
     }
 }
 .icon-btn{
@@ -638,6 +679,12 @@ p{
     align-items: center;
     justify-content: center;
     color: var(--gray-500);
+    background-color: var(--gray-100);
+    border-radius: 8px;
+    &--transparent{
+        background-color: transparent;
+        color: var(--black);
+    }
 }
 .profile{
     min-height: 50vh;
@@ -752,6 +799,7 @@ p{
 }
 
 .empty{
+    margin-top: 132px;
     display: flex;
     align-items: center;
     justify-content: center;

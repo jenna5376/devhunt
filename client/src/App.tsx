@@ -10,6 +10,8 @@ import axios from "axios"
 import Profile from "./pages/Profile/index"
 import Settings from "./pages/Settings"
 import { User } from "./models/models"
+import ProjectDetails from "./components/ProjectDetails"
+import { useLocation } from "react-router-dom"
 
 const App: React.FC = () => {
   const [user, setUser] = useState<User | undefined>(undefined);
@@ -25,17 +27,25 @@ useEffect(() => {
       setUser(res.data.user)
     })
   }, [])
+  
+  const location = useLocation();
+  const previousLocation = location.state?.previousLocation;
 
   return (
     <>
       <Navbar user={user} />
-      <Routes>
+      <Routes location={previousLocation || location}>
         <Route path="/" element={<Home user={user}/>}></Route>
-        <Route path="/upload" element={<Upload user={user} />}></Route>
+        {user && <Route path="/upload" element={<Upload user={user} />}></Route>}
         <Route path="/sign-up" element={<SignUp/>}></Route>
         {user && <Route path="/profile/:category?" element={<Profile user={user} setUser={setUser}/>}></Route>}
         {user && <Route path="/settings" element={<Settings user={user}/>}></Route>}
       </Routes>
+      {previousLocation && (
+        <Routes>
+          <Route path="/post/:id" element={<ProjectDetails />} />
+        </Routes>
+      )}
       <Footer />
     </>
   )

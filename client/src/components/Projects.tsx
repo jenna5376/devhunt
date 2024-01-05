@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Projects = ({projects, user, liked, setLiked}: Props) => {
-  return (
+    return (
     <section className="projects">
         {projects.map((project) => {
             return (

@@ -11,6 +11,16 @@ export const getPosts = async (req: Request, res: Response): Promise<void> => {
     }
 }
 
+export const getPostById = async (req: Request, res: Response): Promise<void> => {
+    const postId = req.params.post;
+    try {
+        const post = await Post.findById(postId)
+        res.status(200).json(post);
+    } catch (error: any) {
+        res.status(500).json(error)
+    }
+}
+
 export const uploadPost = async (req: Request, res: Response): Promise<void> => {
     const post = {...req.body};
     const newPost = new Post(post);
@@ -19,7 +29,7 @@ export const uploadPost = async (req: Request, res: Response): Promise<void> => 
         await newPost.save();
         res.status(201).json(newPost);
     } catch (error: any) {
-        res.status(409).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
 }
 
