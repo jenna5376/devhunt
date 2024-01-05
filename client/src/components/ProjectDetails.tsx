@@ -6,6 +6,63 @@ interface Props {
 }
 
 const ProjectDetails = ({id}: Props) => {
+	
+	const [owner, setOwner] = useState("mongodb-developer")
+	const [repo, setRepo] = useState("mern-stack-example")
+
+	type ProjectDet = {
+        title: string;
+        date: number;
+        github: string;
+        image: string;
+        website: string;
+        readmeMd: string;
+        readme: boolean;
+		tags: [];
+		contributors: [];
+    };
+
+    const [projectDet, setProjectDet] = useState<ProjectDet>({
+        title: '',
+        date: Date.now(),
+        github: '',
+        image: '',
+        website: '',
+        readmeMd: '',
+        readme: false,
+		tags: [],
+		contributors: []
+    })
+
+
+	const fetchData = () => {
+		//repo readme
+		fetch(`https://api.github.com/repos/${owner}/${repo}/readme`)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data)
+				console.log(decodeURIComponent(atob(data.content)));
+			});
+
+		fetch(`https://api.github.com/repos/${owner}/${repo}/languages`)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data)
+			});
+
+		fetch(`https://api.github.com/repos/${owner}/${repo}/contributors`)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data)
+			});
+			
+		fetch(`https://api.github.com/repos/${owner}/${repo}/topics`)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data.names)
+			});
+	}
+
 	return (
 		<div className="modal">
 		<div className="project-det">

@@ -5,9 +5,11 @@ import { Post } from "../models/models";
 interface Props {
     projects: Array<Post>;
     user?: any;
+    liked: Array<String>;
+    setLiked: (val: Array<String>) => void
 }
 
-const Projects = ({projects, user}: Props) => {
+const Projects = ({projects, user, liked, setLiked}: Props) => {
   return (
     <section className="projects">
         {projects.map((project) => {
@@ -22,6 +24,8 @@ const Projects = ({projects, user}: Props) => {
                     user={user}
                     likes={project.likeCount}
                     views={project.viewCount}
+                    liked={liked}
+                    setLiked={setLiked}
                 />
             )
         })}

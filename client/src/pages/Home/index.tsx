@@ -13,71 +13,9 @@ interface Props {
 
 const Home = ({user}: Props) => {
 	const [projects, setProjects] = useState<Array<Post>>([]);
+	const [liked, setLiked] =  useState<Array<String>>([]);
 	const [selected, setSelected] = useState("Discover")
-
-	const [owner, setOwner] = useState("mongodb-developer")
-	const [repo, setRepo] = useState("mern-stack-example")
-
-	type ProjectDet = {
-        title: string;
-        date: number;
-        github: string;
-        image: string;
-        website: string;
-        readmeMd: string;
-        readme: boolean;
-		tags: [];
-		contributors: [];
-    };
-
-    const [projectDet, setProjectDet] = useState<ProjectDet>({
-        title: '',
-        date: Date.now(),
-        github: '',
-        image: '',
-        website: '',
-        readmeMd: '',
-        readme: false,
-		tags: [],
-		contributors: []
-    })
-
-
-	const fetchData = () => {
-		//repo readme
-		fetch(`https://api.github.com/repos/${owner}/${repo}/readme`)
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data)
-				console.log(decodeURIComponent(atob(data.content)));
-			});
-
-		fetch(`https://api.github.com/repos/${owner}/${repo}/languages`)
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data)
-			});
-
-		fetch(`https://api.github.com/repos/${owner}/${repo}/contributors`)
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data)
-			});
-			
-		fetch(`https://api.github.com/repos/${owner}/${repo}/topics`)
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data.names)
-			});
-	}
 	
-	useEffect(() => {
-		fetchData()
-	  }, [])
-
-
-
-
 	useEffect(() => {
 		const fetchProjects = async () => {
 			try {
@@ -86,8 +24,22 @@ const Home = ({user}: Props) => {
 			} catch (err) {
 			console.log(err);
 		}}
-			fetchProjects();
-	});
+		fetchProjects();
+		
+		if (!user) return
+
+		const fetchLikedProjects = async () => {
+			console.log('fetching')
+			try {
+				const response = await axios.get(`http://localhost:4000/posts/liked/ids/${user._id}`);
+				setLiked(response.data);
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		fetchLikedProjects()
+	}, []);
+	
 
 	return (
 		<main>
@@ -110,6 +62,8 @@ const Home = ({user}: Props) => {
 			<Projects
 				projects={projects}
 				user={user}
+				liked={liked}
+				setLiked={setLiked}
 			/>
 		</main>
 	)
