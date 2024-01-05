@@ -124,7 +124,7 @@ p{
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        gap: 12px;
+        gap: 8px;
     }
 }
 
@@ -428,7 +428,7 @@ p{
     }
 }
 
-.button{
+.btn{
     @include body-regular;
     padding: 8px 12px;
     cursor: pointer;
@@ -446,8 +446,14 @@ p{
         background-color: var(--gray-100);
         color: var(--black);
     }
+    &--tertiary{
+        background-color: transparent;
+        color: var(--black);
+    }
     &--large{
         @include body-large;
+        color: var(--black);
+        font-weight: 500;
         padding: 10px 16px;
     }
 }

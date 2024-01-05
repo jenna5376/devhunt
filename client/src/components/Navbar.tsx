@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Bars2Icon, MagnifyingGlassIcon, PlusIcon, MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import Menu from "./Menu";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 interface Props{
 	user: any
@@ -11,7 +12,7 @@ interface Props{
 
 const Navbar = ({user}: Props) => {
 	const [displayMenu, setDisplayMenu] = useState(false)
-	console.log(user)
+	const navigate = useNavigate()
 
 	return (
 		<header className="nav">
@@ -25,25 +26,42 @@ const Navbar = ({user}: Props) => {
 			</div>
 		</div>
 		<nav>
-			{displayMenu && <Menu setDisplayMenu={setDisplayMenu} /> }
 			<>
 			{user ? 
 				(
-				<ul className="nav__links">
-					<div className="icon-btn">
-					<SunIcon className="icon-small"/>
-					</div> 
-					<Link to="/upload">Upload</Link>
-					<div className="nav__menu nav__menu--auth" onClick={()=>{setDisplayMenu(!displayMenu)}}>
-					<img className="nav__avatar" src={user.avatar} />
-					<Bars2Icon className="icon-small" />
+					<ul className="nav__links">
+					{/* <div className="icon-btn">
+						<SunIcon className="icon-small"/>
+					</div>  */}
+						<Button color="primary" onclick={()=>navigate("/upload")} text="Upload" />
+						<div className="nav__menu nav__menu--auth" onClick={()=>{setDisplayMenu(!displayMenu)}}>
+						<img className="nav__avatar" src={user.avatar} />
+						<Bars2Icon className="icon-small" />
 					</div>
+					{displayMenu && 
+						<Menu 
+							displayMenu={displayMenu}
+							setDisplayMenu={setDisplayMenu} 
+							auth={true} 
+						/> 
+					}
 				</ul>
-				
 				) 
 				: 
 				(
-				<Link to="/sign-up">Sign Up</Link>
+					<ul className="nav__links">
+						<Button color="tertiary" onclick={()=>navigate("/sign-up")} text="Upload" />
+						<Button onclick={()=>navigate("/sign-up")} text="Sign Up" />
+						<div className="nav__menu" onClick={()=>{setDisplayMenu(!displayMenu)}}>
+							<Bars2Icon className="icon-small" />
+						</div>
+						{displayMenu && 
+							<Menu 
+								displayMenu={displayMenu}
+								setDisplayMenu={setDisplayMenu} 
+							/> 
+						}
+					</ul>
 				)
 			}
 			</>

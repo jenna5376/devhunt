@@ -1,24 +1,24 @@
-import { useState } from 'react'
-import gradient from '../../assets/gradient.png'
-import dIcon from '../../assets/devfolio-icon-black.svg'
-import Button from '../../components/Button'
-import InputField from '../../components/InputField'
-import google from '../../assets/google.svg'
-import github from '../../assets/github.svg'
+import { useState } from "react"
+import gradient from "../../assets/gradient.png"
+import dIcon from "../../assets/devfolio-icon-black.svg"
+import Button from "../../components/Button"
+import InputField from "../../components/InputField"
+import google from "../../assets/google.svg"
+import github from "../../assets/github.svg"
 
 const SignUp = () => {
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   function googleAuth(){
-    window.open('http://localhost:4000/auth/google', '_self')
+    window.open("http://localhost:4000/auth/google", "_self")
   }
   function githubAuth(){
-    window.open('http://localhost:4000/auth/github', '_self')
+    window.open("http://localhost:4000/auth/github", "_self")
   }
 
   return (
-    <div className='signup'>
-        <div className='signup__block'>
+    <div className="signup">
+        <div className="signup__block">
           <div className="signup__top">
             <div className="signup__icon">
               <img src={dIcon} alt="" />
@@ -28,32 +28,34 @@ const SignUp = () => {
           </div>
             <div className="signup__buttons">
               <Button
-                  color='secondary'
+                  color="secondary"
                   icon={google}
-                  text='Sign up with Google'
+                  text="Sign up with Google"
                   onclick={googleAuth}
+                  size="large"
               />
               <Button
-                  color='secondary'
+                  color="secondary"
                   icon={github}
-                  text='Sign up with GitHub'
+                  text="Sign up with GitHub"
                   onclick={githubAuth}
+                  size="large"
               />
-              <p className='signup__or'>or</p>
+              {/* <p className="signup__or">or</p> */}
             </div>
-            <form className='signup__form'>
-            <InputField
-                state={email}
-                placeholder="Email address"
-                setState={setEmail}
-            />
-            <Button
-                text='Sign up'
-            />
-        </form>
+            {/* <form className="signup__form">
+              <InputField
+                  state={email}
+                  placeholder="Email address"
+                  setState={setEmail}
+              />
+              <Button
+                  text="Sign up"
+              />
+          </form> */}
         </div>
         
-      <img className='signup__gradient' src={gradient} />
+      <img className="signup__gradient" src={gradient} />
     </div>
   )
 }
