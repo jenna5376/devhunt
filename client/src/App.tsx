@@ -9,9 +9,10 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import Profile from "./pages/Profile/index"
 import Settings from "./pages/Settings"
+import { User } from "./models/models"
 
 const App: React.FC = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | undefined>(undefined);
 
  useEffect(() => {
     axios(
@@ -32,8 +33,8 @@ const App: React.FC = () => {
         <Route path="/" element={<Home user={user}/>}></Route>
         <Route path="/upload" element={<Upload user={user} />}></Route>
         <Route path="/sign-up" element={<SignUp/>}></Route>
-        <Route path="/profile/:category?" element={<Profile user={user} setUser={setUser}/>}></Route>
-        <Route path="/settings" element={<Settings user={user}/>}></Route>
+        {user && <Route path="/profile/:category?" element={<Profile user={user} setUser={setUser}/>}></Route>}
+        {user && <Route path="/settings" element={<Settings user={user}/>}></Route>}
       </Routes>
       <Footer />
     </>

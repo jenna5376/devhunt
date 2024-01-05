@@ -8,7 +8,7 @@ import { User } from "../../models/models"
 import { Post } from "../../models/models";
 
 interface Props {
-	user: User
+	user?: User
 }
 
 const Home = ({user}: Props) => {

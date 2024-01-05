@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { User } from "../../models/models"
 
 interface Props{
-    user: User
+    user?: User
   }
 
   //todo add image and category

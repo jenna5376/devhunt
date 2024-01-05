@@ -33,7 +33,7 @@ const Menu = ({displayMenu, setDisplayMenu, auth}: Props) => {
                 <p className="menu__email">jennahan@nyu.edu</p>
             </div>
             <div className="menu__internal">
-                {menuItems.slice(0,3).map(link => {
+                {menuItems.slice(0,2).map(link => {
                     return (
                         <MenuItem 
                             title={link.title}

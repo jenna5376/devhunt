@@ -61,9 +61,9 @@ const EditProfile = ({user, setEdit, setUser}: Props) => {
     <form className="profile__left" onSubmit={(evt) => onSubmit(evt)}>
         <div className="profile__avatar-container">
             <img className="profile__avatar" src={user.avatar} />
-            <div className="profile__avatar-input">
+            {/* <div className="profile__avatar-input">
                 <CameraIcon className="icon-small profile__avatar-icon" />
-            </div>
+            </div> */}
         </div>
         <div className="profile__input">
             <InputField
