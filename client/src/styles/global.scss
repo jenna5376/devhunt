@@ -435,7 +435,7 @@ p{
     font-weight: 500;
     background-color: var(--black);
     color: var(--gray-100);
-    border-radius: 12px;
+    border-radius: 8px;
     border: none;
     display: flex;
     flex-direction: row;
@@ -454,6 +454,7 @@ p{
         @include body-large;
         font-weight: 500;
         padding: 10px 16px;
+        border-radius: 12px;
     }
 }
 
@@ -617,11 +618,34 @@ p{
     &__left{
         width: 280px;
     }
+    &__avatar-container{
+        width: 100px;
+        height: 100px;
+        position: relative;
+        margin-bottom: 24px;
+        cursor: pointer;
+    }
     &__avatar{
         width: 100px;
         height: 100px;
         border-radius: 100%;
         margin-bottom: 24px
+    }
+    &__avatar-input{
+        background-color: var(--gray-100);
+        border-radius: 100%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: -8px;
+        bottom: -8px;
+        outline: 4px solid var(--white);
+    }
+    &__icon{
+        color: var(--gray-500);
     }
     &__name{
         @include h5;
