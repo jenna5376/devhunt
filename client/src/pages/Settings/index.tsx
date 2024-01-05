@@ -1,7 +1,7 @@
-import React from 'react'
+import { User } from "../../models/models"
 
 interface Props{
-    user: any
+    user: User
 }
 
 const Settings = ({user}: Props) => {

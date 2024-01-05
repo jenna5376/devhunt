@@ -1,13 +1,11 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-interface IPost extends Document {
+export interface IPost extends Document {
     title: string;
     image: string;
     creator: mongoose.Schema.Types.ObjectId,
-    tags: string[];
     github: string;
-    website?: string;
-    selectedFile: string;
+    website: string;
     viewCount: number;
     likeCount: number;
     createdAt: Date;
@@ -20,17 +18,17 @@ const PostSchema: Schema = new mongoose.Schema<IPost>({
         required: true 
     },
     image: {
-        type: String
+        type: String,
+        required: true
     },
     creator: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: "User",
-        // required: true 
+        required: true
     },
-    tags: [String],
     github: { 
         type: String, 
-        // required: true 
+        required: true 
     },
     website: String,
     viewCount: {
@@ -46,7 +44,8 @@ const PostSchema: Schema = new mongoose.Schema<IPost>({
         default: new Date()
     },
     readme: {
-        type: Boolean
+        type: Boolean,
+        required: true
     }
 });
 

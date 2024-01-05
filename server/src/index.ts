@@ -55,8 +55,6 @@ const upload = multer({
     storage: storage
 })
 
-//create interface for this
-
 app.post('/upload', upload.single('file'), async (req, res) => {
     console.log(req.file?.filename)
     const post = JSON.parse(req.body.data)

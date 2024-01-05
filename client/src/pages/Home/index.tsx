@@ -3,24 +3,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import arrow from "../../assets/pixel-arrow.svg"
 import Projects from "../../components/Projects";
+import { User } from "../../models/models"
 
-//todo create project cards component
-interface Post extends Document {
-	_id: string;
-	title: string;
-	creator: string;
-	tags: string[];
-	githubLink: string;
-	demoLink?: string;
-	// selectedFile: string;
-	viewCount: number;
-	image: string;
-	likeCount: number;
-	createdAt: Date;
-}
+import { Post } from "../../models/models";
 
 interface Props {
-	user: any
+	user: User
 }
 
 const Home = ({user}: Props) => {

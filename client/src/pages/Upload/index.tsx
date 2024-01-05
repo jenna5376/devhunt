@@ -4,9 +4,10 @@ import RadioButton from "../../components/RadioButton"
 import axios from "axios"
 import FileUpload from "../../components/FileUpload"
 import { useNavigate } from "react-router-dom"
+import { User } from "../../models/models"
 
 interface Props{
-    user: any
+    user: User
   }
 
   //todo add image and category
@@ -78,7 +79,7 @@ const Upload = ({user}: Props) => {
             className="upload__form"
         >
             <div>
-                <input type="file" onChange={handleFileChange} />
+                <input className="input" type="file" onChange={handleFileChange} />
             </div>
             <InputField
                 title="Project Title"

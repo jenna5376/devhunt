@@ -1,8 +1,9 @@
 import Button from "../../components/Button"
 import { EnvelopeIcon, CodeBracketIcon, LinkIcon } from "@heroicons/react/24/outline";
+import { User } from "../../models/models"
 
 interface Props {
-    user: any,
+    user: User,
     setEdit: (value: boolean) => void;
 }
 

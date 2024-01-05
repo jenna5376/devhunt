@@ -4,23 +4,12 @@ import EditProfile from "./EditProfile";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Projects from "../../components/Projects";
+import { Post } from "../../models/models";
+import { User } from "../../models/models"
 
 interface Props{
-	user: any
+	user: User
 	setUser: (value: any) => void;
-}
-
-interface Post extends Document {
-    title: string;
-    creator: string;
-    tags: string[];
-    githubLink: string;
-    demoLink?: string;
-    // selectedFile: string;
-    viewCount: number;
-    likeCount: number;
-    createdAt: Date;
-    _id: string;
 }
 
 //todo user interface

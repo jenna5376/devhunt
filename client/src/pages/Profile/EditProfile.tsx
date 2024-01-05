@@ -2,9 +2,10 @@ import { FormEvent, useState } from "react"
 import InputField from "../../components/InputField";
 import { CameraIcon, EnvelopeIcon, CodeBracketIcon, LinkIcon } from "@heroicons/react/24/outline";
 import Button from "../../components/Button";
+import { User } from "../../models/models";
 
 interface Props {
-    user: any,
+    user: User
     setEdit: (value: boolean) => void;
     setUser: (value: any) => void;
 }

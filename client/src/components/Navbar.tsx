@@ -5,9 +5,10 @@ import { Bars2Icon, MagnifyingGlassIcon, PlusIcon, MoonIcon, SunIcon } from "@he
 import Menu from "./Menu";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import { User } from "../models/models"; 
 
 interface Props{
-	user: any
+	user: User
 }
 
 const Navbar = ({user}: Props) => {

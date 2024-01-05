@@ -1,18 +1,6 @@
 import ProjectCard from "./ProjectCard";
 
-interface Post extends Document {
-    title: string;
-    creator: string;
-    tags: string[];
-    githubLink: string;
-    demoLink?: string;
-    // selectedFile: string;
-    viewCount: number;
-    likeCount: number;
-    createdAt: Date;
-    _id: string;
-    image: string;
-}
+import { Post } from "../models/models";
 
 interface Props {
     projects: Array<Post>;
