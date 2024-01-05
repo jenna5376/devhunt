@@ -6,14 +6,16 @@ interface Props {
   color?: ColorTypes,
   icon?: string,
   text: string,
+  submit?: boolean,
   fullWidth?: boolean,
   onclick?: () => void;
 }
 
-const Button = ({size, color, icon, text, fullWidth, onclick} : Props) => {
+const Button = ({size, color, icon, text, submit, fullWidth, onclick} : Props) => {
   return (
     <button 
-      className={`btn ${size ? `btn--${size}` : ''} ${color ? `btn--${color}` : ''}`}
+      type={submit ? "submit" : "button"}
+      className={`btn ${size ? `btn--${size}` : ""} ${color ? `btn--${color}` : ""}`}
       onClick={onclick}
     >
       {icon && <img src={icon} />}

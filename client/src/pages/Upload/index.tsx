@@ -98,7 +98,7 @@ const Upload = ({user}: Props) => {
                     checked={isChecked('no')}
                 />
             </fieldset>
-            <button className="button" type="submit">Upload Project</button>
+            <button className="btn btn--large" type="submit">Upload Project</button>
         </form>
     </div>
   )

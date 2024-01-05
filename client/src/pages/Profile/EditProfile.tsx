@@ -100,10 +100,14 @@ const EditProfile = ({user, setEdit, setUser}: Props) => {
                 setState={(value) => handleStateChange("website", value)}
             />
         </div>
-        <div className="profile__buttons">
-            <button className="button" type="submit">Upload Project</button>
+        <div className="profile__btns">
+            <Button
+                text="Save Changes"
+                submit={true}
+            />
             <Button 
                 text="Cancel"
+                color="tertiary"
                 onclick={() => {setEdit(false)}}
             />
         </div>

@@ -452,7 +452,6 @@ p{
     }
     &--large{
         @include body-large;
-        color: var(--black);
         font-weight: 500;
         padding: 10px 16px;
     }
@@ -677,8 +676,11 @@ p{
     &__input{
         margin-bottom: 8px;
     }
-    &__buttons{
+    &__btns{
         margin-top: 24px;
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
     }
     &__count{
         font-weight: 400;

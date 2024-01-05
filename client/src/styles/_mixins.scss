@@ -58,7 +58,6 @@
     font-family: 'Rubik', sans-serif;
     font-size: var(--body-x-large);
     font-weight: 400;
-    color: var(--gray-500);
     line-height: 140%;
 }
 
@@ -66,14 +65,12 @@
     font-family: 'Rubik', sans-serif;
     font-size: var(--body-large);
     font-weight: 400;
-    color: var(--gray-500);
     line-height: 140%;
 }
 @mixin body-regular{
     font-family: 'Rubik', sans-serif;
     font-size: var(--body-regular);
     font-weight: 400;
-    color: var(--gray-500);
     line-height: 140%;
 }
 
@@ -81,7 +78,6 @@
     font-family: 'Rubik', sans-serif;
     font-size: var(--body-small);
     font-weight: 400;
-    color: var(--gray-500);
     line-height: 140%;
 }
 

@@ -30,6 +30,13 @@ const Profile = ({user, setUser}: Props) => {
 	const [projects, setProjects] = useState<Array<Post>>([]);
 	const [liked, setLiked] = useState<Array<Post>>([]);
 	const navigate = useNavigate();
+
+	const location = useParams().category;
+
+	useEffect(() => {
+		setCategory(location)
+	}, [location]);
+
 	
 	//todo create fetch hook
 	useEffect(() => {
@@ -59,11 +66,9 @@ const Profile = ({user, setUser}: Props) => {
 
 	function setCategory(category?: string): void {
 		if (category){
-			navigate(`/profile/${category}`)
 			setSelected(category)
 		}
 		else {
-			navigate('/profile')
 			setSelected('work')
 		}
 	}
@@ -85,14 +90,14 @@ const Profile = ({user, setUser}: Props) => {
 					<button
 						type="button"
 						className={`chip ${selected==='work' ? 'chip--selected' : ''}`}
-						onClick={() => setCategory()}
+						onClick={() => navigate('/profile')}
 					>
 						Work<span className="profile__count">{projects.length}</span>
 					</button>
 					<button
 						type="button"
 						className={`chip ${selected==='liked' ? 'chip--selected' : ''}`}
-						onClick={() => setCategory('liked')}
+						onClick={() => navigate('/profile/liked')}
 					>
 						Liked Projects<span className="profile__count">{liked.length}</span>
 					</button>
