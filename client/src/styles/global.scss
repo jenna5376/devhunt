@@ -604,12 +604,14 @@ p{
 
 .modal-bg{
     z-index: 1000;
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.2);
     left: 0;
     top: 0;
+    overflow-y: scroll;
+
 }
 
 .project-det{
@@ -621,12 +623,37 @@ p{
     border: 1px solid var(--gray-200);
     border-radius: 24px;
     margin-top: 80px;
+    margin-bottom: 40px;
 }
 
 .project-det{
+    &__side{
+        display: flex;
+        flex-direction: column;
+        padding: 20px 16px;
+        border: 1px solid var(--gray-100);
+        border-radius: 8px;
+        align-self: flex-start;
+        gap: 24px;
+    }
+    &__heading{
+        @include body-regular;
+        font-weight: 700;
+        color: var(--black);
+        margin-bottom: 12px;
+    }
+    &__content{
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+    }
+    &__article{
+        max-width: 540px;
+    }
     &__header{
         display: flex;
         flex-direction: row;
+        margin-bottom: 24px;
     }
     &__left{
         flex-grow: 2
@@ -664,12 +691,21 @@ p{
         align-items: flex-start;
         gap: 8px;
     }
-    &__img-wrapper{
-        max-width: 560px;
-    }
     &__img{
         width: 100%;
         border-radius: 12px;
+        margin-bottom: 32px;
+    }
+    &__avatar{
+        width: 24px;
+        height: 24px;
+        border-radius: 100%;
+    }
+    &__contributor{
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        margin-bottom: 8px;
     }
 }
 .icon-btn{
@@ -843,4 +879,17 @@ select{
 }
 .filled-heart{
     color: #DF2451;
+}
+
+.tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.tag{
+    list-style: none;
+    @include body-small;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--gray-100);
 }

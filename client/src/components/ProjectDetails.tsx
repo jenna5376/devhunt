@@ -4,7 +4,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import { Post } from "../models/models"
 import Button from "./Button"
-
+import Markdown from 'markdown-to-jsx'
+import emoji from 'emoji-dictionary'
 
 interface Props {
 	id: string
@@ -20,6 +21,26 @@ const ProjectDetails = () => {
 	const [project, setProject] = useState<Post>({} as Post)
 	const [owner, setOwner] = useState("")
 	const [repo, setRepo] = useState("")
+
+	interface GhProfile {
+		avatar_url: string,
+		login: string,
+		repos_url: string
+	}
+
+	interface GhData {
+		readme: string;
+		languages: string[];
+		tags: string[];
+		contributors: Array<GhProfile>;
+	}
+
+	const [ghData, setGhData] = useState<GhData>({
+		readme: '',
+		languages: [''],
+		contributors: [],
+		tags: []
+	})
 	
 	useEffect(()=>{
 		const fetchProject = async () => {
@@ -35,7 +56,6 @@ const ProjectDetails = () => {
 			console.log(err);
 		}}
 		fetchProject();
-		fetchData()
 	}, [])
 
 
@@ -51,38 +71,45 @@ const ProjectDetails = () => {
 	};
 	}, []);
 
+	useEffect(()=>{
+		if (repo && owner){
+			fetchData()
+		}
+	}, [repo, owner])
+
 	const fetchData = () => {
-		//repo readme
 		fetch(`https://api.github.com/repos/${owner}/${repo}/readme`)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data)
-				console.log(decodeURIComponent(atob(data.content)));
+				let md = decodeURIComponent(atob(data.content))
+				md = md.replace(/:\w+:/gi, name => emoji.getUnicode(name))
+				setGhData(prev => ({...prev, readme: md}))
 			});
 
 		fetch(`https://api.github.com/repos/${owner}/${repo}/languages`)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data)
+				setGhData(prev => ({...prev, languages: Object.keys(data)}))
 			});
 
 		fetch(`https://api.github.com/repos/${owner}/${repo}/contributors`)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data)
+				setGhData(prev => ({...prev, contributors: data}))
 			});
 			
 		fetch(`https://api.github.com/repos/${owner}/${repo}/topics`)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data.names)
+				setGhData(prev => ({...prev, tags: data.names}))
 			});
 	}
 
+	console.log(ghData)
+
 	return (
 		<div className="modal-bg" ref={modalRef} onClick={() => navigate('/')}>
-		<div className="project-det" onClick={(e) => e.stopPropagation()}>
-			<main>
+			<div className="project-det" onClick={(e) => e.stopPropagation()}>
 				<header className="project-det__header">
 					<div className="project-det__left">
 						<h1 className="project-det__title">{project?.title}</h1>
@@ -107,44 +134,73 @@ const ProjectDetails = () => {
 						<div className="icon-btn">
 							<HeartIcon className="icon-small" />
 						</div>
-						<Button
+						{project.website && <Button
 							text="View Code"
 							color="secondary"
-						/>
+							onclick={()=>{ window.open(project.website);
+							}}
+						/>}
 						<Button
 							text="Visit Site"
+							onclick={()=>{ window.open(project.github);
+							}}
 						/>
 						<div className="icon-btn icon-btn--transparent">
 							<XMarkIcon className="icon-small" />
 						</div>
 					</div>
 				</header>
-				<article>
-				<div className="project-det__img-wrapper">
-					<img className="project-det__img" src={`http://localhost:4000/images/${project.image}`}/>
-				</div>
-				<p>We recently launched the MVP site for Creative South, featuring some amazing illustrations from our team. We had a ton of fun creating a new world for the upcoming conference. Fun fact, this site was just featured on the big screen during the keynote at this year's Webflow Conference. We can't wait to share what else we have in the works. You can get your early bird tickets now! Join us March 30 - April 1, 2023 in Columbus, GA.</p>
-				</article>
-			</main>
-			<aside>
-				<p>Links</p>
-				{project.github && 
-				<div className="profile__link">
-					<CodeBracketIcon className="icon-x-small" />
-					<a href={project.github} target="_blank"className="profile__url">{project.github}</a>
-				</div>
-				}
-				{project.website && 
-				<div className="profile__link">
-					<LinkIcon className="icon-x-small" />
-					<a href={project.website} target="_blank"className="profile__url">{project.website}</a>
-				</div>
-				}
-
-				<p>Languages</p>
-				
-				<p>Contributors</p>
-			</aside>
+				<main className="project-det__content">
+					<article className="project-det__article">
+						<div className="project-det__img-wrapper">
+							<img className="project-det__img" src={`http://localhost:4000/images/${project.image}`}/>
+						</div>
+						<Markdown children={ghData.readme} />
+					</article>
+					<aside className="project-det__side">
+						<div>
+							<p className="project-det__heading">Links</p>
+							{project.github && 
+							<div className="profile__link">
+								<CodeBracketIcon className="icon-x-small" />
+								<a href={project.github} target="_blank"className="profile__url">{project.github}</a>
+							</div>
+							}
+							{project.website && 
+							<div className="profile__link">
+								<LinkIcon className="icon-x-small" />
+								<a href={project.website} target="_blank"className="profile__url">{project.website}</a>
+							</div>
+							}
+						</div>
+							{ghData.languages.length > 0 && <div>
+								<p className="project-det__heading">Languages</p>
+								<ul className="tags">
+									{ghData.languages.map((value) => (
+										<li className="tag" key={value}>{value}</li>
+									))}
+								</ul>
+							</div>}
+							{ghData.tags.length > 0 && 
+							<div>
+								<p className="project-det__heading">Tags</p>
+								<ul className="tags">
+									{ghData.tags.map((value) => (
+										<li className="tag" key={value}>{value}</li>
+									))}
+								</ul>
+							</div>}
+							{ghData.contributors.length > 0 && <div>
+								<p className="project-det__heading">Contributors</p>
+								{ghData.contributors.map((value) => (
+									<div className="project-det__contributor">
+										<img className="project-det__avatar" src={value.avatar_url} />
+										<p>{value.login}</p>
+									</div>
+								))}
+							</div>}
+					</aside>
+				</main>
 			</div>
 		</div>
 	)
