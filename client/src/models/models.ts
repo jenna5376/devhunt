@@ -1,6 +1,7 @@
 export interface Post {
     title: string;
     image: string;
+    category: string;
     creator: string,
     creatorAvatar: string,
     github: string;

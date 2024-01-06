@@ -3,6 +3,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 export interface IPost extends Document {
     title: string;
     image: string;
+    category: string;
     creator: mongoose.Schema.Types.ObjectId;
     creatorAvatar: string;
     github: string;
@@ -19,6 +20,10 @@ const PostSchema: Schema = new mongoose.Schema<IPost>({
         required: true 
     },
     image: {
+        type: String,
+        required: true
+    },
+    category: {
         type: String,
         required: true
     },
