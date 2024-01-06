@@ -20,6 +20,7 @@ const Profile = ({user, setUser}: Props) => {
 	const [edit, setEdit] = useState(false);
 	const [projects, setProjects] = useState<Array<Post>>([]);
 	const [liked, setLiked] = useState<Array<Post>>([]);
+	const [likedId, setLikedId] = useState<Array<String>>([]);
 	const navigate = useNavigate();
 
 	const location = useParams().category;
@@ -36,6 +37,7 @@ const Profile = ({user, setUser}: Props) => {
 				const response = await axios.get(
 					`http://localhost:4000/posts/${user._id}`
 				);
+				if (response.data === null) return
 				setProjects(response.data)
 			} catch (err) {
 				console.log(err);
@@ -47,7 +49,10 @@ const Profile = ({user, setUser}: Props) => {
 				const response = await axios.get(
 					`http://localhost:4000/posts/liked/${user._id}`
 				);
+				if (response.data === null) return
 				setLiked(response.data)
+				setLikedId(response.data.map((liked: Post) => liked._id))
+
 			} catch (err) {
 				console.log(err);
 			}
@@ -96,7 +101,9 @@ const Profile = ({user, setUser}: Props) => {
 					</button>
 				</ul>
 				{
-					projects.length === 0 && (
+					((selected==="work" && projects.length === 0) 
+					|| (selected==="liked" && liked.length === 0))
+					&& (
 						<div className="empty">
 							<div className="empty__icon-container">
 								<CodeBracketIcon className="icon-small empty__icon"/>
@@ -110,10 +117,12 @@ const Profile = ({user, setUser}: Props) => {
 						</div>
 					)
 				}
-				{/* <Projects 
+				<Projects 
 					projects={selected === "work" ? projects : liked }
 					user={user}
-				/> */}
+					liked={likedId}
+					setLiked={setLikedId}
+				/>
 			</div>
 		</div>
 	)
