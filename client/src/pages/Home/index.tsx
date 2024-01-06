@@ -13,6 +13,7 @@ interface Props {
 
 const Home = ({user}: Props) => {
 	const [projects, setProjects] = useState<Array<Post>>([]);
+	const [filteredProjects, setFilteredProjects] = useState<Array<Post>>([]);
 	const [liked, setLiked] =  useState<Array<String>>([]);
 	const [selected, setSelected] = useState("Discover")
 
@@ -23,6 +24,7 @@ const Home = ({user}: Props) => {
 			try {
 				const response = await axios.get("http://localhost:4000/posts");
 				setProjects(response.data);
+				setFilteredProjects(response.data);
 			} catch (err) {
 			console.log(err);
 		}}
@@ -31,7 +33,6 @@ const Home = ({user}: Props) => {
 		if (!user) return
 
 		const fetchLikedProjects = async () => {
-			console.log('fetching')
 			try {
 				const response = await axios.get(`http://localhost:4000/posts/liked/ids/${user._id}`);
 				setLiked(response.data);
@@ -41,6 +42,14 @@ const Home = ({user}: Props) => {
 		};
 		fetchLikedProjects()
 	}, []);
+
+	useEffect(()=>{
+		if (selected === "Discover") {
+			return setFilteredProjects(projects)
+		}
+
+		setFilteredProjects(projects.filter((project) => project.category === selected))
+	}, [selected])
 	
 
 	return (
@@ -62,7 +71,7 @@ const Home = ({user}: Props) => {
 				/>
 			</section>
 			<Projects
-				projects={projects}
+				projects={filteredProjects}
 				user={user}
 				liked={liked}
 				setLiked={setLiked}

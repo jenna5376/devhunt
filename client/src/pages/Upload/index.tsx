@@ -13,7 +13,6 @@ interface Props{
     user: User
 }
 
-  //todo add image and category
 const Upload = ({user}: Props) => {
 
     const navigate = useNavigate()
@@ -23,10 +22,9 @@ const Upload = ({user}: Props) => {
         title: string;
         creator: any;
         creatorAvatar: string;
-        // image: string;
         github: string;
         website: string;
-        // category: string;
+        category: string;
         readme: number;
     };
 
@@ -37,19 +35,17 @@ const Upload = ({user}: Props) => {
         creatorAvatar: user.avatar,
         github: "",
         website: "",
-        // category: "",
+        category: "",
         readme: 1
     })
 
     const [file, setFile] = useState<File>();
-
 
     const onDrop = useCallback((acceptedFiles: Array<File>) => {
         setFile(acceptedFiles[0]);
     }, [])
 
     const {getRootProps, getInputProps} = useDropzone({onDrop})
-
 
     const handleStateChange = (fieldName: string, value: string | number) => {
         setForm((prevForm) => ({ ...prevForm, [fieldName]: value }));
@@ -99,7 +95,10 @@ const Upload = ({user}: Props) => {
             </div>
             <div className="input">
                 <label className="input__label input__label--required" >Category</label>
-                <select required className="input__field select">
+                <select 
+                    required className="input__field select" 
+                    onChange={(e) => handleStateChange('category', e.target.value)}
+                >
                     <option value="">Select a category</option>
                     {categoryFilters.slice(1,categoryFilters.length).map((category) => (
                         <option
