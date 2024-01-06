@@ -24,7 +24,7 @@ export const getPostById = async (req: Request, res: Response): Promise<void> =>
 export const uploadPost = async (req: Request, res: Response): Promise<void> => {
     const post = {...req.body};
     const newPost = new Post(post);
-
+    
     try {
         await newPost.save();
         res.status(201).json(newPost);

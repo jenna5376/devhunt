@@ -15,6 +15,8 @@ const Home = ({user}: Props) => {
 	const [projects, setProjects] = useState<Array<Post>>([]);
 	const [liked, setLiked] =  useState<Array<String>>([]);
 	const [selected, setSelected] = useState("Discover")
+
+	console.log(projects)
 	
 	useEffect(() => {
 		const fetchProjects = async () => {

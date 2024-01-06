@@ -2,6 +2,7 @@ export interface Post {
     title: string;
     image: string;
     creator: string,
+    creatorAvatar: string,
     github: string;
     website: string;
     viewCount: number;

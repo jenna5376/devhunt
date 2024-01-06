@@ -3,7 +3,8 @@ import mongoose, { Document, Schema } from 'mongoose';
 export interface IPost extends Document {
     title: string;
     image: string;
-    creator: mongoose.Schema.Types.ObjectId,
+    creator: mongoose.Schema.Types.ObjectId;
+    creatorAvatar: string;
     github: string;
     website: string;
     viewCount: number;
@@ -25,6 +26,10 @@ const PostSchema: Schema = new mongoose.Schema<IPost>({
         type: mongoose.Schema.Types.ObjectId, 
         ref: "User",
         required: true
+    },
+    creatorAvatar: {
+        type: String,
+        default: 'https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg'
     },
     github: { 
         type: String, 

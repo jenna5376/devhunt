@@ -20,7 +20,7 @@ const Projects = ({projects, user, liked, setLiked}: Props) => {
                     image={project.image} 
                     title={project.title}
                     name="" 
-                    avatarUrl="" 
+                    avatarUrl={project.creatorAvatar}
                     user={user}
                     likes={project.likeCount}
                     views={project.viewCount}

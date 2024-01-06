@@ -22,6 +22,7 @@ const Upload = ({user}: Props) => {
         file: string;
         title: string;
         creator: any;
+        creatorAvatar: string;
         // image: string;
         github: string;
         website: string;
@@ -33,7 +34,7 @@ const Upload = ({user}: Props) => {
         file: "",
         title: "",
         creator: user._id,
-        // image: "",
+        creatorAvatar: user.avatar,
         github: "",
         website: "",
         // category: "",
@@ -47,7 +48,7 @@ const Upload = ({user}: Props) => {
         setFile(acceptedFiles[0]);
     }, [])
 
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+    const {getRootProps, getInputProps} = useDropzone({onDrop})
 
 
     const handleStateChange = (fieldName: string, value: string | number) => {

@@ -63,8 +63,8 @@ const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views
                             <ArrowUpRightIcon className="icon-small" />
                         </div>
                     </div>
-                    <div className="project-card__avatar">
-                        <img src={avatarUrl} />
+                    <div className="project-card__avatar-outline">
+                        <img className="project-card__avatar" src={avatarUrl} />
                     </div>
                 </div>
                 <div className="project-card__stats">
