@@ -1,12 +1,13 @@
 import InputField from "../../components/InputField"
-import React, { useState, useRef } from "react"
+import React, { useState, useCallback } from "react"
 import RadioButton from "../../components/RadioButton"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import { User } from "../../models/models"
 import Button from "../../components/Button"
-
 import { categoryFilters } from "../../constant/index"
+import { useDropzone } from 'react-dropzone'
+import { PlusIcon } from "@heroicons/react/24/outline"
 
 interface Props{
     user: User
@@ -39,12 +40,15 @@ const Upload = ({user}: Props) => {
         readme: 1
     })
 
-    const fileInput = useRef<HTMLInputElement>(null)
+    const [file, setFile] = useState<File>();
 
-    const uploadFile = () => {
-        if (fileInput.current == null) return;
-        fileInput.current.click();
-    };
+
+    const onDrop = useCallback((acceptedFiles: Array<File>) => {
+        setFile(acceptedFiles[0]);
+    }, [])
+
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+
 
     const handleStateChange = (fieldName: string, value: string | number) => {
         setForm((prevForm) => ({ ...prevForm, [fieldName]: value }));
@@ -71,14 +75,7 @@ const Upload = ({user}: Props) => {
         navigate('/')
     }
 
-    const [file, setFile] = useState<File>();
-
-    const handleFileChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        if (evt.target.files && evt.target.files.length > 0) {
-            setFile(evt.target.files[0]);
-        }
-    };
-
+    //todo make image upload required
     return (
     <div className="upload">
         <h1 className="upload__heading">Upload Project</h1>
@@ -87,15 +84,17 @@ const Upload = ({user}: Props) => {
             onSubmit={handleSubmit}
             className="upload__form"
         >
-            <div className="input">
+            <div>
                 <label className="input__label input__label--required" >Image</label>
-                <input required ref={fileInput} className="file-input" type="file" onChange={handleFileChange} />
-                <Button
-                    text="Upload Image"
-                    onclick={() => uploadFile()}
-                    color="secondary"
-                    fullWidth={true}
-                />
+                <section className="file-input">
+                    <div {...getRootProps()}>
+                        <input {...getInputProps()} />
+                        <PlusIcon className="icon" />
+                        <p className="file-input__instruction">Drop your image here or <span className="file-input__click">click to upload</span></p>
+                        <p className="file-input__size">Recommended size: 1200 x 900</p>
+                    </div>
+                </section>
+                {file && <p className="file-input__name">{file.name}</p>}
             </div>
             <div className="input">
                 <label className="input__label input__label--required" >Category</label>

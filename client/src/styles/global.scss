@@ -628,6 +628,7 @@ p{
 
 .project-det{
     &__side{
+        width: 100%;
         display: flex;
         flex-direction: column;
         padding: 20px 16px;
@@ -648,7 +649,7 @@ p{
         gap: 32px;
     }
     &__article{
-        max-width: 540px;
+        min-width: 540px;
     }
     &__header{
         display: flex;
@@ -863,7 +864,35 @@ p{
 }
 
 .file-input{
-    display: none;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 4px;
+    border: 1px dashed var(--gray-300);
+    text-align: center;
+    &__instruction{
+        color: var(--black);
+        font-weight: 500;
+        margin-top: 8px;
+        margin-bottom: 4px;
+        cursor: pointer;
+    }
+    &__size{
+        @include body-regular;
+        font-weight: 500;
+        color: var(--gray-400);
+    }
+    &__click{
+        color: var(--blue);
+    }
+    &__name{
+        background-color: var(--gray-100);
+        padding: 4px;
+        margin-top: 8px;
+        border-radius: 4px;
+    }
 }
 
 select {
