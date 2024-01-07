@@ -7,10 +7,6 @@ import Button from "./Button"
 import Markdown from 'markdown-to-jsx'
 import emoji from 'emoji-dictionary'
 
-interface Props {
-	id: string
-}
-
 const ProjectDetails = () => {
 
 	//change this so i don't fetch project det twice
@@ -37,7 +33,7 @@ const ProjectDetails = () => {
 
 	const [ghData, setGhData] = useState<GhData>({
 		readme: '',
-		languages: [''],
+		languages: [],
 		contributors: [],
 		tags: []
 	})
@@ -104,8 +100,6 @@ const ProjectDetails = () => {
 				setGhData(prev => ({...prev, tags: data.names}))
 			});
 	}
-
-	console.log(ghData)
 
 	return (
 		<div className="modal-bg" ref={modalRef} onClick={() => navigate('/')}>

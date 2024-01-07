@@ -7,7 +7,7 @@ router.get('/', getPosts);
 router.get('/:post', getPostById)
 router.post('/upload', uploadPost);
 router.put('/like', likePost);
-router.get('/:user', getUserPosts);
+router.get('/by/:user', getUserPosts);
 router.get('/liked/:user', getLikedPosts);
 router.get('/liked/ids/:user', getLikedPostIds);
 

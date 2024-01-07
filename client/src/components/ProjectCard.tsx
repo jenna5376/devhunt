@@ -56,7 +56,7 @@ const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views
                             {isLiked(postId) ?
                                 <FilledHeartIcon className="icon-small filled-heart" />
                                 :
-                                <HeartIcon className="icon-small" />
+                                <HeartIcon onClick={() => setLiked([...liked, postId])} className="icon-small" />
                             }
                         </div>
                         <div className="project-card__button">

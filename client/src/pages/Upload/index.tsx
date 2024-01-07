@@ -69,7 +69,7 @@ const Upload = ({user}: Props) => {
                 .then(res => console.log(res))
                 .catch(err => console.log(err))
         }
-        navigate('/')
+        navigate('/profile')
     }
 
     //todo make image upload required

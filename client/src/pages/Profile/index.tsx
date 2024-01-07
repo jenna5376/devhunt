@@ -28,14 +28,13 @@ const Profile = ({user, setUser}: Props) => {
 	useEffect(() => {
 		setCategory(location)
 	}, [location]);
-
 	
-	//todo create fetch hook
 	useEffect(() => {
 		const fetchProjects = async () => {
+			console.log(user._id)
 			try {
 				const response = await axios.get(
-					`http://localhost:4000/posts/${user._id}`
+					`http://localhost:4000/posts/by/${user._id}`
 				);
 				if (response.data === null) return
 				setProjects(response.data)

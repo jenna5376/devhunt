@@ -2,7 +2,11 @@ import dIconBlack from "../assets/devfolio-icon-black.svg"
 import dIconWhite from "../assets/devfolio-icon-white.svg"
 import { useLocation } from "react-router-dom";
 
-const Footer = () => {
+interface Props {
+  isDark: boolean
+}
+
+const Footer = ({isDark}: Props) => {
   const location = useLocation();
   const path = location.pathname;
   const display =  path == "/sign-up" ? false : true;
@@ -12,7 +16,7 @@ const Footer = () => {
       { display &&
         <footer className="footer">
         <p className="footer__left">© 2024 Devhunt. All rights reserved.</p>
-        <img className="footer__icon" src={dIconBlack} />
+        <img className="footer__icon" src={isDark ? dIconWhite : dIconBlack} />
         {/* <p className="footer__right"><span className="footer__count">1020</span> dev projects</p> */}
         </footer>
       }

@@ -2,22 +2,28 @@ import Categories from "./Categories"
 import { useEffect, useState } from "react";
 import axios from "axios";
 import arrow from "../../assets/pixel-arrow.svg"
+import arrowDark from "../../assets/pixel-arrow-dark.svg"
 import Projects from "../../components/Projects";
 import { User } from "../../models/models"
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import circlesRight from "../../assets/circles-right.png"
+import circlesLeft from "../../assets/circles-left.png"
+import circlesRightDark from "../../assets/circles-right-dark.png"
+import circlesLeftDark from "../../assets/circles-left-dark.png"
+import circles from "../../assets/circles-dark.png"
 
 import { Post } from "../../models/models";
 
 interface Props {
-	user?: User
+	user?: User,
+	isDark: boolean
 }
 
-const Home = ({user}: Props) => {
+const Home = ({user, isDark}: Props) => {
 	const [projects, setProjects] = useState<Array<Post>>([]);
 	const [filteredProjects, setFilteredProjects] = useState<Array<Post>>([]);
 	const [liked, setLiked] =  useState<Array<String>>([]);
 	const [selected, setSelected] = useState("Discover")
-
-	console.log(projects)
 	
 	useEffect(() => {
 		const fetchProjects = async () => {
@@ -54,17 +60,41 @@ const Home = ({user}: Props) => {
 
 	return (
 		<main>
+			<div className={`squares ${isDark ? 'squares--dark' : ''}`}>
+				<div className="square square--1"></div>
+				<div className="square square--2"></div>
+				<div className="square square--3"></div>
+				<div className="square square--4"></div>
+				<div className="square square--5"></div>
+			</div>
+			{isDark ? 
+			<>
+				<img className="circle-dark" src={circles} />
+			</>
+			:
+			<div className="circles-light">
+				<img className="circle-light" src={circlesLeft} alt="" />
+				<img className="circle-light" src={circlesRight} alt="" />
+			</div>
+			}
 			<section className="hero">
 				<div className="hero__text">
 				<h1 className="hero__heading">Discover and showcase coding projects</h1>
 				<p className="hero__subheading">Find inspirations and references for your next coding project with our collection of projects with source code</p>
 				</div>
 				<div className="hero__arrow">
-				<img src={arrow} />
-				<p>Get Inspired</p>
+					{isDark ?
+						<img src={arrowDark} /> :
+						<img src={arrow} />
+					}
+					<p className="hero__mono">Get Inspired</p>
 				</div>
 			</section>
 			<section className="filter">
+				<div className="filter__sort">
+					<p className="filter__categories">Featured</p>
+					<ChevronDownIcon className="icon-small filter__icon" />
+				</div>
 				<Categories 
 					selected={selected}
 					setSelected={setSelected}

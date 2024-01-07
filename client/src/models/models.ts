@@ -9,7 +9,7 @@ export interface Post {
     viewCount: number;
     likeCount: number;
     createdAt: Date;
-    readme: boolean;
+    readme: boolean | number;
     _id: string;
 }
 

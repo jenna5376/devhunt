@@ -1,4 +1,5 @@
 import { categoryFilters } from "../../constant"
+import { ChevronRightIcon } from "@heroicons/react/24/outline"
 
 interface Props {
   selected: string,
@@ -19,6 +20,10 @@ const Categories = ({selected, setSelected} : Props) => {
               {category}
           </button>
           ))}
+          <div className="categories__overflow"></div>
+          <div className="categories__more">
+            <ChevronRightIcon className="icon-small categories__chevron" />
+          </div>
       </ul>
   )
 }

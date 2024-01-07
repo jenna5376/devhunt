@@ -31,13 +31,31 @@ useEffect(() => {
   const location = useLocation();
   const previousLocation = location.state?.previousLocation;
 
+  const getCurrentTheme = () => window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [isDark, setIsDark] = useState(() => {
+    const initialTheme = localStorage.getItem('theme')
+    if (initialTheme){
+      const theme = initialTheme === 'dark' ? true : false
+      return theme
+    }
+    return getCurrentTheme()
+  })
+  const addBodyClass = (className: string) => document.body.classList.add(className);
+  const removeBodyClass = (className: string) => document.body.classList.remove(className);
+  
+  useEffect(() => {
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+    if (isDark) addBodyClass('dark')
+    else removeBodyClass('dark')
+  }, [isDark])
+
   return (
-    <>
-      <Navbar user={user} />
+    <div className="body">
+      <Navbar user={user} isDark={isDark} setIsDark={setIsDark} />
       <Routes location={previousLocation || location}>
-        <Route path="/" element={<Home user={user}/>}></Route>
+        <Route path="/" element={<Home user={user} isDark={isDark}/>}></Route>
         {user && <Route path="/upload" element={<Upload user={user} />}></Route>}
-        <Route path="/sign-up" element={<SignUp/>}></Route>
+        <Route path="/sign-up" element={<SignUp isDark={isDark}/>}></Route>
         {user && <Route path="/profile/:category?" element={<Profile user={user} setUser={setUser}/>}></Route>}
         {user && <Route path="/settings" element={<Settings user={user}/>}></Route>}
       </Routes>
@@ -46,8 +64,8 @@ useEffect(() => {
           <Route path="/post/:id" element={<ProjectDetails />} />
         </Routes>
       )}
-      <Footer />
-    </>
+      <Footer isDark={isDark} />
+    </div>
   )
 }
 

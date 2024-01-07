@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react"
 import InputField from "../../components/InputField";
-import { EnvelopeIcon, CodeBracketIcon, LinkIcon } from "@heroicons/react/24/outline";
+import { CameraIcon, EnvelopeIcon, CodeBracketIcon, LinkIcon } from "@heroicons/react/24/outline";
 import Button from "../../components/Button";
 import { User } from "../../models/models";
 import { useEffect } from "react";
@@ -61,9 +61,9 @@ async function onSubmit(evt: FormEvent) {
     <form className="profile__left" onSubmit={(evt) => onSubmit(evt)}>
         <div className="profile__avatar-container">
             <img className="profile__avatar" src={user.avatar} />
-            {/* <div className="profile__avatar-input">
+            <div className="profile__avatar-input">
                 <CameraIcon className="icon-small profile__avatar-icon" />
-            </div> */}
+            </div>
         </div>
         <div className="profile__input">
             <InputField
