@@ -35,17 +35,17 @@ export const menuItems = [
   
 export const categoryFilters = [
   "Discover",
-  "Frontend",
-  "Backend",
-  "Full-Stack",
-  "Mobile",
-  "UI/UX",
-  "Game Dev",
-  "DevOps",
-  "Data Science",
+  "Landing Page",
+  "Portfolio",
+  "Blog",
+  "Entertainment",
+  "eCommerce",
+  "3D",
+  "AI",
   "Machine Learning",
-  "Cybersecurity",
+  "Game",
+  "Business",
+  "Health",
+  "Agency",
   "Blockchain",
-  "E-commerce",
-  "Chatbots"
 ]
