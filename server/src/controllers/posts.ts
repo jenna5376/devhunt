@@ -39,7 +39,7 @@ export const uploadPost = async (req: Request, res: Response): Promise<void> => 
 }
 
 //todo make this togglable
-export const likePost = async (req: Request, res: Response): Promise<void> => {
+export const likeOrUnlike = async (req: Request, res: Response): Promise<void> => {
     const postId = req.body.postId;
     const userId = req.body.userId;
     
@@ -47,15 +47,28 @@ export const likePost = async (req: Request, res: Response): Promise<void> => {
         const post = await Post.findById(postId);
         const user = await User.findById(userId);
         if (user && post){
-            user.likedPosts.push(post);
-            await user.save();
-            const updatedPost = await Post.findOneAndUpdate( 
-                {_id: postId}, 
-                {$inc: { likeCount: +1 } },
-                {new: true}
-            );
-            res.status(201).send({user, post: updatedPost})
-            console.log("successfully liked post");
+            if (user.likedPosts.includes(postId)) {
+                user.likedPosts.splice(postId,1);
+                await user.save();
+                const updatedPost = await Post.findOneAndUpdate( 
+                    {_id: postId}, 
+                    {$inc: { likeCount: -1 } },
+                    {new: true}
+                );
+                res.status(201).send({user, post: updatedPost})
+                console.log("successfully unliked post");
+            }
+            else {
+                user.likedPosts.push(post);
+                await user.save();
+                const updatedPost = await Post.findOneAndUpdate( 
+                    {_id: postId}, 
+                    {$inc: { likeCount: +1 } },
+                    {new: true}
+                );
+                res.status(201).send({user, post: updatedPost})
+                console.log("successfully liked post");
+            }
         }
     } catch (err) {
         console.log(err)

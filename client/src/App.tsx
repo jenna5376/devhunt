@@ -54,7 +54,7 @@ useEffect(() => {
     <div className="body">
       <Navbar user={user} isDark={isDark} setIsDark={setIsDark} />
       <Routes location={previousLocation || location}>
-        <Route path="/" element={<Home user={user} isDark={isDark} update={update}/>}></Route>
+        <Route path="/" element={<Home user={user} isDark={isDark} update={update} setUpdate={setUpdate}/>}></Route>
         {user && <Route path="/upload" element={<Upload user={user} />}></Route>}
         <Route path="/sign-up" element={<SignUp isDark={isDark}/>}></Route>
         {user && <Route path="/profile/:category?" element={<Profile user={user} setUser={setUser}/>}></Route>}

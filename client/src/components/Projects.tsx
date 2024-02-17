@@ -7,9 +7,10 @@ interface Props {
     user?: any;
     liked: Array<String>;
     setLiked: (val: Array<String>) => void;
+    setUpdate: (val: Date) => void;
 }
 
-const Projects = ({projects, user, liked, setLiked}: Props) => {
+const Projects = ({projects, user, liked, setLiked, setUpdate}: Props) => {
     return (
     <section className="projects">
         {projects.map((project) => {
@@ -26,6 +27,7 @@ const Projects = ({projects, user, liked, setLiked}: Props) => {
                     views={project.viewCount}
                     liked={liked}
                     setLiked={setLiked}
+                    setUpdate={setUpdate}
                 />
             )
         })}

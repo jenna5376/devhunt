@@ -17,10 +17,11 @@ import { Post } from "../../models/models";
 interface Props {
 	user?: User,
 	isDark: boolean,
-	update: Date
+	update: Date,
+	setUpdate: (val: Date) => void;
 }
 
-const Home = ({user, isDark, update}: Props) => {
+const Home = ({user, isDark, update, setUpdate}: Props) => {
 	const [projects, setProjects] = useState<Array<Post>>([]);
 	const [filteredProjects, setFilteredProjects] = useState<Array<Post>>([]);
 	const [liked, setLiked] =  useState<Array<String>>([]);
@@ -107,6 +108,7 @@ const Home = ({user, isDark, update}: Props) => {
 				user={user}
 				liked={liked}
 				setLiked={setLiked}
+				setUpdate={setUpdate}
 			/>
 		</main>
 	)

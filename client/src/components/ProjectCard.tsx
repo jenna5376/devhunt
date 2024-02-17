@@ -16,27 +16,29 @@ interface Props {
     views: number;
     liked: Array<String>;
     setLiked: (val: Array<String>) => void;
+    setUpdate: (val: Date) => void;
 };
 
-const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views, liked, setLiked }: Props) => {
-    function incrementHeart(evt: React.SyntheticEvent){
+const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views, liked, setLiked, setUpdate }: Props) => {
+    function changeHeart(evt: React.SyntheticEvent){
         evt.preventDefault();
         evt.stopPropagation();
 
         if (user){
 
-        const likeProject = async (postId: string, userId: string) => {
+        const likeOrUnlike = async (postId: string, userId: string) => {
             try {
-                const response = await axios.put("http://localhost:4000/posts/like", {
+                const response = await axios.put("http://localhost:4000/posts/likeOrUnlike", {
                     postId,
                     userId
                 });
-                setLiked(response.data.user.likedPosts)
+                setLiked(response.data.user.likedPosts);
+                setUpdate(new Date());
             } catch (err) {
                 console.log(err);
             }
             };
-            likeProject(postId, user._id)
+            likeOrUnlike(postId, user._id)
         }
     }
 
@@ -52,7 +54,8 @@ const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views
                 <div className="project-card__cover">
                     <img className="project-card__img" src={`http://localhost:4000/images/${image}`} />
                     <div className="project-card__buttons">
-                        <div className="project-card__button" onClick={(evt) => incrementHeart(evt)}>
+                        <div className="project-card__button" onClick={(evt) => changeHeart(evt)}
+>
                             {isLiked(postId) ?
                                 <FilledHeartIcon className="icon-small filled-heart" />
                                 :
