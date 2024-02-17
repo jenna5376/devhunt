@@ -3,6 +3,7 @@ import { HeartIcon, EyeIcon, ArrowUpRightIcon } from "@heroicons/react/24/outlin
 import { HeartIcon as FilledHeartIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 interface Props {
     postId: string;
@@ -14,11 +15,10 @@ interface Props {
     likes: number;
     views: number;
     liked: Array<String>;
-    setLiked: (val: Array<String>) => void
+    setLiked: (val: Array<String>) => void;
 };
 
 const ProjectCard = ({ postId, image, title, name, avatarUrl, user, likes, views, liked, setLiked }: Props) => {
-
     function incrementHeart(evt: React.SyntheticEvent){
         evt.preventDefault();
         evt.stopPropagation();

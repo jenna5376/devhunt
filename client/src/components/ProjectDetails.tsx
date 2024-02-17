@@ -7,7 +7,11 @@ import Button from "./Button"
 import Markdown from 'markdown-to-jsx'
 import emoji from 'emoji-dictionary'
 
-const ProjectDetails = () => {
+interface Props {
+	setUpdate: (val: Date) => void;
+};
+
+const ProjectDetails = ({setUpdate}: Props) => {
 
 	//change this so i don't fetch project det twice
 	
@@ -43,6 +47,7 @@ const ProjectDetails = () => {
 			try {
 				const response = await axios.get("http://localhost:4000/posts/" + id);
 				setProject(response.data);
+				setUpdate(new Date());
 				const github = (response.data.github)
 				const cleanUrl = github.replace(/^(https?:\/\/)?/, '');
 				const parts = cleanUrl.split('/');

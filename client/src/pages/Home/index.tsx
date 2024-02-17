@@ -16,16 +16,18 @@ import { Post } from "../../models/models";
 
 interface Props {
 	user?: User,
-	isDark: boolean
+	isDark: boolean,
+	update: Date
 }
 
-const Home = ({user, isDark}: Props) => {
+const Home = ({user, isDark, update}: Props) => {
 	const [projects, setProjects] = useState<Array<Post>>([]);
 	const [filteredProjects, setFilteredProjects] = useState<Array<Post>>([]);
 	const [liked, setLiked] =  useState<Array<String>>([]);
 	const [selected, setSelected] = useState("Discover")
 	
 	useEffect(() => {
+		console.log("updated value",update)
 		const fetchProjects = async () => {
 			try {
 				const response = await axios.get("http://localhost:4000/posts");
@@ -47,7 +49,7 @@ const Home = ({user, isDark}: Props) => {
 			}
 		};
 		fetchLikedProjects()
-	}, []);
+	}, [update]);
 
 	useEffect(()=>{
 		if (selected === "Discover") {

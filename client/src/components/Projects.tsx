@@ -6,7 +6,7 @@ interface Props {
     projects: Array<Post>;
     user?: any;
     liked: Array<String>;
-    setLiked: (val: Array<String>) => void
+    setLiked: (val: Array<String>) => void;
 }
 
 const Projects = ({projects, user, liked, setLiked}: Props) => {

@@ -14,8 +14,13 @@ export const getPosts = async (req: Request, res: Response): Promise<void> => {
 export const getPostById = async (req: Request, res: Response): Promise<void> => {
     const postId = req.params.post;
     try {
-        const post = await Post.findById(postId)
-        res.status(200).json(post);
+        const updatedPost = await Post.findOneAndUpdate( 
+            {_id: postId}, 
+            {$inc: { viewCount: +1 } },
+            {new: true}
+        );
+        console.log("successfully viewed post")
+        res.status(200).json(updatedPost);
     } catch (error: any) {
         res.status(500).json(error)
     }
@@ -50,6 +55,7 @@ export const likePost = async (req: Request, res: Response): Promise<void> => {
                 {new: true}
             );
             res.status(201).send({user, post: updatedPost})
+            console.log("successfully liked post");
         }
     } catch (err) {
         console.log(err)
