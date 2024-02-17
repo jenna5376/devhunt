@@ -145,7 +145,9 @@ const ProjectDetails = ({setUpdate}: Props) => {
 							}}
 						/>
 						<div className="icon-btn icon-btn--transparent">
-							<XMarkIcon className="icon-small" />
+							<XMarkIcon className="icon-small" 
+								onClick={() => navigate('/')}
+							/>
 						</div>
 					</div>
 				</header>

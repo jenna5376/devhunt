@@ -16,12 +16,14 @@ const Info = ({user, setEdit}: Props) => {
                 <p><span className="profile__num">{user.followers.length}</span> followers</p>
                 <p><span className="profile__num">{user.following.length}</span> following</p>
             </div>
-            <Button 
-                text="Edit Profile"
-                color="secondary"
-                onclick={() => setEdit(true)}
-                fullWidth={true}
-            />
+            <div className="profile__button">
+                <Button 
+                    text="Edit Profile"
+                    color="secondary"
+                    onclick={() => setEdit(true)}
+                    fullWidth={true}
+                />
+            </div>
             {user.about && 
             <div>
                 <p className="profile__about-heading">About</p>
