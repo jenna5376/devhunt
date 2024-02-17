@@ -5,7 +5,7 @@ import arrow from "../../assets/pixel-arrow.svg"
 import arrowDark from "../../assets/pixel-arrow-dark.svg"
 import Projects from "../../components/Projects";
 import { User } from "../../models/models"
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import circlesRight from "../../assets/circles-right.png"
 import circlesLeft from "../../assets/circles-left.png"
 import circlesRightDark from "../../assets/circles-right-dark.png"
@@ -102,6 +102,9 @@ const Home = ({user, isDark, update, setUpdate}: Props) => {
 					selected={selected}
 					setSelected={setSelected}
 				/>
+				{/* <div className="filter__more">
+					<ChevronRightIcon className="icon-small categories__chevron" />
+				</div> */}
 			</section>
 			<Projects
 				projects={filteredProjects}

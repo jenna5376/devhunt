@@ -212,6 +212,7 @@ h1, h2, h3, h4, h5, h6{
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    position: relative;
     &__sort{
         display: flex;
         flex-direction: row;
@@ -228,16 +229,19 @@ h1, h2, h3, h4, h5, h6{
         color: var(--black);
         font-weight: 500;
     }
-    
 }
 
 .categories{
     flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-    height: 36px;
+    overflow-x: scroll;
     scroll-behavior: smooth;
     position: relative;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar{
+        display: none
+    }
     .chip{
         @include body-regular;
         padding: 8px 12px;
@@ -259,22 +263,6 @@ h1, h2, h3, h4, h5, h6{
             }
         }
     }
-    &__more{
-        position: absolute;
-        right: 0;
-        z-index: 1000;
-        top: 0;
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 32px;
-        border: 1px solid var(--gray-200);
-        cursor: pointer;
-        box-sizing: border-box;
-        background-color: var(--white);
-    }
     &__chevron{
         color: var(--gray-500);
     }
@@ -287,6 +275,19 @@ h1, h2, h3, h4, h5, h6{
         z-index: 2;
         background: var(--overflow-grad);
         border-radius: 32px;
+    }
+    &__more{
+        flex-shrink: 0;
+        z-index: 1000;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 32px;
+        cursor: pointer;
+        box-sizing: border-box;
+        background-color: var(--black-04);
     }
 }
 
