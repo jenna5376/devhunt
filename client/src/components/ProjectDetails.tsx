@@ -1,4 +1,4 @@
-import { CalendarIcon, HeartIcon, EyeIcon, XMarkIcon, CodeBracketIcon, LinkIcon } from "@heroicons/react/24/outline"
+import { CalendarIcon, HeartIcon, EyeIcon, XMarkIcon, CodeBracketIcon, LinkIcon, EllipsisHorizontalIcon } from "@heroicons/react/24/outline"
 import { useState, useEffect, useRef } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
@@ -21,6 +21,7 @@ const ProjectDetails = ({setUpdate}: Props) => {
 	const [project, setProject] = useState<Post>({} as Post)
 	const [owner, setOwner] = useState("")
 	const [repo, setRepo] = useState("")
+	const [open, setOpen] = useState(false)
 
 	interface GhProfile {
 		avatar_url: string,
@@ -130,6 +131,17 @@ const ProjectDetails = ({setUpdate}: Props) => {
 						</div>
 					</div>
 					<div className="project-det__btns">
+						<div className="icon-btn" onClick={()=>setOpen(!open)}>
+							<EllipsisHorizontalIcon className="icon-small" />
+						</div>
+						{
+							open && (
+								<div>
+									<p>Edit post</p>
+									<p>Delete post</p>
+								</div>
+							)
+						}
 						<div className="icon-btn">
 							<HeartIcon className="icon-small" />
 						</div>
