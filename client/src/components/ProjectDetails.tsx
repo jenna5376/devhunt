@@ -107,6 +107,25 @@ const ProjectDetails = ({setUpdate}: Props) => {
 			});
 	}
 
+	//make it so that user can only delete own posts -- maybe move the button to only being visible if accessed within own profile 
+	function deletePost(evt: React.SyntheticEvent){
+        evt.preventDefault();
+        evt.stopPropagation();
+		if (id) {
+			const deletePost = async () => {
+				try {
+					const response = await axios.delete("http://localhost:4000/posts/" + id);
+					setUpdate(new Date);
+					console.log(response);
+					navigate('/profile');
+				} catch (err) {
+					console.log(err)
+				}
+			};
+			deletePost()
+		}
+    }
+
 	return (
 		<div className="modal-bg" ref={modalRef} onClick={() => navigate('/')}>
 			<div className="project-det" onClick={(e) => e.stopPropagation()}>
@@ -137,8 +156,10 @@ const ProjectDetails = ({setUpdate}: Props) => {
 						{
 							open && (
 								<div>
-									<p>Edit post</p>
-									<p>Delete post</p>
+									<Button
+										text="Edit post"
+									/>
+									<button onClick={deletePost}>Delete Post</button>
 								</div>
 							)
 						}

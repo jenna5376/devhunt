@@ -76,6 +76,29 @@ export const likeOrUnlike = async (req: Request, res: Response): Promise<void> =
     }
 }
 
+export const deletePost = async (req: Request, res: Response): Promise<void>=> {
+    try {
+        const postId = req.params.post;
+        const result = await Post.deleteOne({
+            _id: postId
+        })
+        if (result.deletedCount==1) {
+            console.log("successfully deleted post")
+            const result = await User.updateMany(
+                {likedPosts: postId},
+                {$pull:{likedPosts: postId}}
+            )
+            res.status(201).send({message: result})
+        }
+        else {
+            res.status(500).send({message:"error finding post to delete"})
+        }
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+}
+
 export const getLikedPosts = async (req: Request, res: Response): Promise<void> => {
     try {
         const user = await User.findById(req.params.user);

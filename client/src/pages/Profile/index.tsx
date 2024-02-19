@@ -12,10 +12,12 @@ import { CodeBracketIcon } from "@heroicons/react/24/outline";
 interface Props{
 	user: User
 	setUser: (value: any) => void;
+	update: Date
+	setUpdate: (val: Date) => void;
 }
 
 //todo user interface
-const Profile = ({user, setUser}: Props) => {
+const Profile = ({user, setUser,update, setUpdate}: Props) => {
 	const [selected, setSelected] = useState(useParams().category || "work");
 	const [edit, setEdit] = useState(false);
 	const [projects, setProjects] = useState<Array<Post>>([]);
@@ -57,7 +59,7 @@ const Profile = ({user, setUser}: Props) => {
 			}
 		};
 		likedProjects();
-	}, []);
+	}, [update]);
 
 	function setCategory(category?: string): void {
 		if (category){
@@ -121,6 +123,7 @@ const Profile = ({user, setUser}: Props) => {
 					user={user}
 					liked={likedId}
 					setLiked={setLikedId}
+					setUpdate={setUpdate}
 				/>
 			</div>
 		</div>
