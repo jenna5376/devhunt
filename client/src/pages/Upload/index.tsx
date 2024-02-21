@@ -86,9 +86,8 @@ const Upload = ({user, edit, post, id, setEdit}: Props) => {
             }
         }
        else {
-        if (file) {
             const formData = new FormData();
-            formData.append("file", file);
+            formData.append("file", file?file:post.image);
             formData.append('data', JSON.stringify({...form, id}))
             axios.post(
               "http://localhost:4000/editWithPicture", 
@@ -101,11 +100,7 @@ const Upload = ({user, edit, post, id, setEdit}: Props) => {
             )
             .then(res => console.log(res))
             .catch(err => console.log(err))
-          } else {
-            const response = await axios.put("http://localhost:4000/editNoPicture",JSON.stringify({...form,id}));
-            console.log(response)
           }
-       }
        setEdit(false)
        navigate('/profile')
     }
