@@ -9,9 +9,12 @@ import emoji from 'emoji-dictionary'
 
 interface Props {
 	setUpdate: (val: Date) => void;
+	setEdit: (val: boolean) => void;
+	setPost: (val: Post) => void;
+	setId: (val: string) => void;
 };
 
-const ProjectDetails = ({setUpdate}: Props) => {
+const ProjectDetails = ({setUpdate, setEdit, setPost, setId}: Props) => {
 
 	//change this so i don't fetch project det twice
 	
@@ -126,6 +129,17 @@ const ProjectDetails = ({setUpdate}: Props) => {
 		}
     }
 
+	function editPost(evt: React.SyntheticEvent) {
+		evt.preventDefault()
+		evt.stopPropagation()
+		setEdit(true)
+		if (id) {
+			setId(id)
+		}
+		setPost(project)
+		navigate('/upload')
+	}
+
 	return (
 		<div className="modal-bg" ref={modalRef} onClick={() => navigate('/')}>
 			<div className="project-det" onClick={(e) => e.stopPropagation()}>
@@ -156,9 +170,7 @@ const ProjectDetails = ({setUpdate}: Props) => {
 						{
 							open && (
 								<div>
-									<Button
-										text="Edit post"
-									/>
+									<button onClick={editPost}>Edit Post</button>
 									<button onClick={deletePost}>Delete Post</button>
 								</div>
 							)

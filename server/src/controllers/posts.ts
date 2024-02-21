@@ -38,6 +38,22 @@ export const uploadPost = async (req: Request, res: Response): Promise<void> => 
     }
 }
 
+export const editPost = async(req: Request, res: Response): Promise<void> => {
+    console.log("edited post")
+    const post = {...req.body};
+    try {
+        const updatedPost = await Post.findOneAndUpdate( 
+            {_id: post.id}, 
+            {$set: {...post} },
+            {new: true}
+        );
+        console.log(updatedPost)
+        res.status(201).send({post: updatedPost})
+    } catch(err) {
+        res.status(500).json(err)
+    }
+}
+
 //todo make this togglable
 export const likeOrUnlike = async (req: Request, res: Response): Promise<void> => {
     const postId = req.body.postId;

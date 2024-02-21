@@ -70,6 +70,20 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     }
 })
 
+app.post('/editWithPicture', upload.single('file'), async (req, res) => {
+    console.log("editing with picture")
+    const post = JSON.parse(req.body.data)
+    post.image = req.file?.filename
+    console.log(post)
+    try {
+        const newPost = await Post.findByIdAndUpdate(post.id, { $set: {...post}}, { new: true });
+        console.log(newPost)
+        res.status(201).send({post: newPost})
+    } catch (error: any) {
+        res.status(409).json({ message: error.message });
+    }
+})
+
 const PORT = process.env.PORT || 4000;
 
 mongoose.connect(process.env.DSN || '')
